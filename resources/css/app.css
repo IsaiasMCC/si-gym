@@ -1,0 +1,271 @@
+@import 'tailwindcss/base';
+
+@import 'tailwindcss/components';
+@import 'buttons';
+@import 'form';
+
+@import 'tailwindcss/utilities';
+/* ==========================
+   CONTRASTE ALTO
+========================== */
+.high-contrast {
+  filter: contrast(1.5);
+}
+
+/* ==========================
+   VARIABLES GLOBALES
+========================== */
+:root {
+  --transition-fast: 0.2s ease-in-out;
+  --transition-medium: 0.4s ease-in-out;
+}
+
+/* ==========================
+   TEMAS CLAROS
+========================== */
+.kids {
+  --color-primary: #ffeb3b;
+  --color-primary-dark: #fdd835;
+  --color-bg: #fffde7;
+  --color-card-bg: #fff9c4;
+  --color-text: #5d4037;
+  --color-sidebar-bg: #fdd835;
+  --color-sidebar-text: #3e2723;
+  --color-link-hover: #fbc02d;
+  --color-border: #f0e68c;
+}
+
+.youth {
+  --color-primary: #03a9f4;
+  --color-primary-dark: #0288d1;
+  --color-bg: #e1f5fe;
+  --color-card-bg: #b3e5fc;
+  --color-text: #01579b;
+  --color-sidebar-bg: #0288d1;
+  --color-sidebar-text: #e1f5fe;
+  --color-link-hover: #0277bd;
+  --color-border: #81d4fa;
+}
+
+.adult {
+  --color-primary: #8bc34a;
+  --color-primary-dark: #689f38;
+  --color-bg: #f1f8e9;
+  --color-card-bg: #dcedc8;
+  --color-text: #33691e;
+  --color-sidebar-bg: #689f38;
+  --color-sidebar-text: #dcedc8;
+  --color-link-hover: #558b2f;
+  --color-border: #c5e1a5;
+}
+
+/* ==========================
+   MODO OSCURO (AZUL MARINO SUAVE)
+========================== */
+.dark.kids {
+  --color-bg: #1B2A47;
+  --color-card-bg: #243757;
+  --color-text: #ffeb3b;
+  --color-sidebar-bg: #2e406d;
+  --color-sidebar-text: #f5f5f5;
+  --color-link-hover: #ffc107;
+  --color-border: #3c4f7f;
+}
+
+.dark.youth {
+  --color-bg: #1B2A47;
+  --color-card-bg: #243757;
+  --color-text: #b3e5fc;
+  --color-sidebar-bg: #2e406d;
+  --color-sidebar-text: #f5f5f5;
+  --color-link-hover: #03a9f4;
+  --color-border: #3c4f7f;
+}
+
+.dark.adult {
+  --color-bg: #1B2A47;
+  --color-card-bg: #243757;
+  --color-text: #dcedc8;
+  --color-sidebar-bg: #2e406d;
+  --color-sidebar-text: #f5f5f5;
+  --color-link-hover: #8bc34a;
+  --color-border: #3c4f7f;
+}
+
+/* ==========================
+   TRANSICIONES SUAVES
+========================== */
+body, .MainMenu, .md\:flex-1, .md\:flex > div:first-child, .card, button, input, select {
+  transition: background-color var(--transition-medium), color var(--transition-medium), border-color var(--transition-medium);
+}
+
+/* ==========================
+   FONDO GENERAL Y CONTENIDO
+========================== */
+.md\:flex-1 {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+/* ==========================
+   TOPBAR
+========================== */
+.md\:flex > div:first-child {
+  background-color: var(--color-primary);
+  color: var(--color-text);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* ==========================
+   SIDEBAR
+========================== */
+.MainMenu, .md\:block {
+  background: var(--color-sidebar-bg);
+  color: var(--color-sidebar-text);
+  box-shadow: 2px 0 8px rgba(0,0,0,0.15);
+}
+
+/* Links del menú */
+.MainMenu a {
+  color: var(--color-sidebar-text);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: background-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+}
+
+.MainMenu a:hover {
+  background-color: var(--color-link-hover);
+  color: white;
+  transform: translateX(5px);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* ==========================
+   TARJETAS / TABLAS
+========================== */
+.card, .shadow,
+table, th, td {
+  background-color: var(--color-card-bg);
+  color: var(--color-text);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border: 1px solid var(--color-border);
+}
+
+/* ==========================
+   BOTONES, INPUTS, SELECTS
+========================== */
+button, input, select {
+  background-color: var(--color-card-bg);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+}
+
+button:hover {
+  background-color: var(--color-link-hover);
+  color: white;
+  cursor: pointer;
+}
+
+/* ==========================
+   HOVER Y DETALLES
+========================== */
+.MainMenu a svg {
+  transition: fill var(--transition-fast), transform var(--transition-fast);
+}
+
+.MainMenu a:hover svg {
+  fill: white;
+  transform: scale(1.2);
+}
+
+/* ==========================
+   GRADIENTES
+========================== */
+.md\:flex > div:first-child {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+}
+
+.MainMenu {
+  background: linear-gradient(to bottom, var(--color-sidebar-bg), rgba(0,0,0,0.05));
+}
+
+/* ==========================
+   EFECTOS DE SOMBRA
+========================== */
+.md\:flex-1, .card {
+  box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+}
+
+/* ==========================
+   MODO OSCURO AZUL MARINO SUAVE
+========================== */
+.dark body,
+.dark .md\:flex-1 {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+.dark .card,
+.dark table,
+.dark th,
+.dark td {
+  background-color: var(--color-card-bg);
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+
+.dark .MainMenu {
+  background: linear-gradient(to bottom, var(--color-sidebar-bg), #1e2c4f);
+  color: var(--color-sidebar-text);
+}
+
+.dark .MainMenu a {
+  color: var(--color-sidebar-text);
+}
+
+.dark .MainMenu a:hover {
+  color: #ffffff;
+  background-color: #2e406d;
+}
+
+.dark .md\:flex > div:first-child {
+  background: linear-gradient(135deg, #1e2c4f, #2e406d);
+  color: var(--color-text);
+}
+
+.dark button,
+.dark input,
+.dark select {
+  background-color: #243757;
+  color: var(--color-text);
+  border-color: #3c4f7f;
+}
+
+.dark button:hover {
+  background-color: #2e406d;
+  color: #ffffff;
+}
+
+.dark a,
+.dark a:visited {
+  color: #64b5f6;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.dark a:hover {
+  color: #90caf9;
+}
+
+.dark input::placeholder {
+  color: rgba(245, 245, 245, 0.5);
+}
