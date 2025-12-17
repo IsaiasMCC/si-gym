@@ -29,28 +29,28 @@ use Illuminate\Support\Facades\Route;
 
 // Auth
 
-Route::get('/inf513/grupo18sc/proyecto2/sis-gym/public/login', [AuthenticatedSessionController::class, 'create'])
+Route::get('/login', [AuthenticatedSessionController::class, 'create'])
     ->name('login')
     ->middleware('guest');
 
-Route::post('/inf513/grupo18sc/proyecto2/sis-gym/public/login', [AuthenticatedSessionController::class, 'store'])
+Route::post('/login', [AuthenticatedSessionController::class, 'store'])
     ->name('login.store')
     ->middleware('guest');
 
-Route::delete('/inf513/grupo18sc/proyecto2/sis-gym/public/logout', [AuthenticatedSessionController::class, 'destroy'])
+Route::delete('/logout', [AuthenticatedSessionController::class, 'destroy'])
     ->name('logout');
 
-Route::get('/inf513/grupo18sc/proyecto2/sis-gym/public/register', [AuthenticatedSessionController::class, 'index_create'])
+Route::get('/register', [AuthenticatedSessionController::class, 'index_create'])
     ->name('index_create')
     ->middleware('guest');
 
-Route::post('/inf513/grupo18sc/proyecto2/sis-gym/public/register', [AuthenticatedSessionController::class, 'register'])
+Route::post('/register', [AuthenticatedSessionController::class, 'register'])
     ->name('register')
     ->middleware('guest');
 
 // Dashboard
 
-Route::get('/inf513/grupo18sc/proyecto2/sis-gym/public', [DashboardController::class, 'index'])
+Route::get('/', [DashboardController::class, 'index'])
     ->name('dashboard')
     ->middleware('auth');
 
