@@ -51,8 +51,8 @@ Route::post('/inf513/grupo18sc/proyecto2/sis-gym/public/register', [Authenticate
 // Dashboard
 
 Route::get('/inf513/grupo18sc/proyecto2/sis-gym/public', [DashboardController::class, 'index'])
-    ->name('dashboard')
-    ->middleware('auth');
+    ->name('dashboard');
+    // ->middleware('auth');
 
 Route::prefix('inf513/grupo18sc/proyecto2/sis-gym/public/seguimientos-reportes')->group(function () {
     Route::get('reportes', [SeguimientoReporteController::class, 'index'])->name('seguimientos.reportes');

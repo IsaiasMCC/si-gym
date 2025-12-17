@@ -18,9 +18,9 @@
           </label>
         </div>
         <div class="text-center mt-4">
-          <a href="/inf513/grupo18sc/proyecto2/sis-gym/public/register" class="text-sm text-indigo-600 hover:underline">
+          <Link href="/inf513/grupo18sc/proyecto2/sis-gym/public/register" class="text-sm text-indigo-600 hover:underline">
             ¿No tienes una cuenta? Regístrate aquí
-          </a>
+          </Link>
         </div>
 
         <div class="flex px-10 py-4 bg-gray-100 border-t border-gray-100">
@@ -32,13 +32,14 @@
 </template>
 
 <script>
-import { Head } from '@inertiajs/vue3'
+import { Head, Link } from '@inertiajs/vue3'
 import Logo from '@/Shared/Logo.vue'
 import TextInput from '@/Shared/TextInput.vue'
 import LoadingButton from '@/Shared/LoadingButton.vue'
 
 export default {
   components: {
+    Link,
     Head,
     LoadingButton,
     Logo,

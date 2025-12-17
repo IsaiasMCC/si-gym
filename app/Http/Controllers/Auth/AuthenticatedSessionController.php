@@ -41,7 +41,7 @@ class AuthenticatedSessionController extends Controller
         if ($user->role_id === 3) {
             return redirect()->route('subscripciones.index');
         } else {
-            return redirect()->route('dashboard');
+            return redirect('/inf513/grupo18sc/proyecto2/sis-gym/public');
         }
     }
 
