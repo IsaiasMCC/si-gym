@@ -1,0 +1,58 @@
+<template>
+  <div class="min-h-screen p-6" :style="{ color: 'var(--color-text)', backgroundColor: 'var(--color-bg)' }">
+    <Head title="Crear Paquete" />
+    <h1 class="mb-8 text-3xl font-bold">
+      <Link class="text-indigo-400 hover:text-indigo-600" href="/inf513/grupo18sc/proyecto2/sis-gym/public/paquetes">Paquetes</Link>
+      <span class="text-indigo-400 font-medium">/</span> Crear
+    </h1>
+
+    <div class="max-w-3xl rounded-md shadow overflow-hidden" :style="{ backgroundColor: 'var(--color-card-bg)', color: 'var(--color-text)' }">
+      <form @submit.prevent="store">
+        <div class="flex flex-wrap -mb-8 -mr-6 p-8">
+          <text-input v-model="form.nombre" :error="form.errors.nombre" class="pb-8 pr-6 w-full lg:w-1/2" label="Nombre*" />
+          <text-input v-model="form.descripcion" :error="form.errors.descripcion" class="pb-8 pr-6 w-full lg:w-1/2" label="Descripción" />
+          <text-input v-model="form.precio_adicional" :error="form.errors.precio_adicional" class="pb-8 pr-6 w-full lg:w-1/2" label="Precio Adicional" type="number" />
+          <select-input v-model="form.estado" :error="form.errors.estado" class="pb-8 pr-6 w-full lg:w-1/2" label="Estado*">
+            <option value="activo">Activo</option>
+            <option value="inactivo">Inactivo</option>
+          </select-input>
+          <select-input v-model="form.membresia_id" :error="form.errors.membresia_id" class="pb-8 pr-6 w-full lg:w-1/2" label="Membresía*">
+            <option disabled value="">Seleccione una membresía</option>
+            <option v-for="m in membresias" :key="m.id" :value="m.id">{{ m.nombre }}</option>
+          </select-input>
+        </div>
+
+        <div class="flex items-center justify-end px-8 py-4 border-t"
+             :style="{ backgroundColor: 'var(--color-card-bg)', borderColor: 'var(--color-border)' }">
+          <loading-button :loading="form.processing" class="btn-indigo" type="submit">Crear Paquete</loading-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</template>
+
+<script>
+import { Head, Link } from '@inertiajs/vue3'
+import Layout from '@/Shared/Layout.vue'
+import TextInput from '@/Shared/TextInput.vue'
+import SelectInput from '@/Shared/SelectInput.vue'
+import LoadingButton from '@/Shared/LoadingButton.vue'
+
+export default {
+  components: { Head, Link, TextInput, SelectInput, LoadingButton },
+  layout: Layout,
+  props: { membresias: Array },
+  data() {
+    return {
+      form: this.$inertia.form({
+        nombre: '',
+        descripcion: '',
+        precio_adicional: 0,
+        estado: 'activo',
+        membresia_id: null
+      }),
+    }
+  },
+  methods: { store() { this.form.post('/inf513/grupo18sc/proyecto2/sis-gym/public/paquetes') } },
+}
+</script>

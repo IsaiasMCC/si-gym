@@ -1,5 +1,6 @@
 <template>
   <div class="min-h-screen p-6" :style="{ color: 'var(--color-text)', backgroundColor: 'var(--color-bg)' }">
+
     <Head title="Membresías" />
     <h1 class="mb-8 text-3xl font-bold">Membresías</h1>
 
@@ -9,13 +10,14 @@
         <input v-model="form.search" type="text" class="form-input mt-1 w-full" placeholder="Buscar membresías..." />
       </search-filter>
 
-      <Link class="btn-indigo" href="/inf513/grupo18sc/proyecto2/sis-gym/public/membresias/create">
-        <span>Crear</span>
-        <span class="hidden md:inline">&nbsp;Membresía</span>
+      <Link v-if="can('membresias agregar')" class="btn-indigo" href="/inf513/grupo18sc/proyecto2/sis-gym/public/membresias/create">
+      <span>Crear</span>
+      <span class="hidden md:inline">&nbsp;Membresía</span>
       </Link>
     </div>
 
-    <div class="rounded-md shadow overflow-x-auto" :style="{ backgroundColor: 'var(--color-card-bg)', color: 'var(--color-text)' }">
+    <div class="rounded-md shadow overflow-x-auto"
+      :style="{ backgroundColor: 'var(--color-card-bg)', color: 'var(--color-text)' }">
       <table class="w-full whitespace-nowrap">
         <thead>
           <tr class="text-left font-bold">
@@ -24,13 +26,13 @@
             <th class="pb-4 pt-6 px-6">Precio</th>
             <th class="pb-4 pt-6 px-6">Descripción</th>
             <th class="pb-4 pt-6 px-6">Estado</th>
-            <th class="pb-4 pt-6 px-6"></th>
+            <th v-if="canAny" class="pb-4 pt-6 px-6"> Accion</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="m in membresias.data" :key="m.id" class="border-t transition-colors duration-300"
-              @mouseover="hover = m.id" @mouseleave="hover = null"
-              :class="hover === m.id ? 'bg-[var(--color-hover)]' : ''">
+            @mouseover="hover = m.id" @mouseleave="hover = null"
+            :class="hover === m.id ? 'bg-[var(--color-hover)]' : ''">
             <td class="px-6 py-4">
               <Link :href="`/inf513/grupo18sc/proyecto2/sis-gym/public/membresias/${m.id}/edit`">{{ m.nombre }}</Link>
             </td>
@@ -38,9 +40,9 @@
             <td class="px-6 py-4">{{ m.precio_base }}</td>
             <td class="px-6 py-4">{{ m.descripcion }}</td>
             <td class="px-6 py-4">{{ m.estado }}</td>
-            <td class="px-4 py-4 w-px">
+            <td class="px-4 py-4 w-px" v-if="canAny">
               <Link :href="`/inf513/grupo18sc/proyecto2/sis-gym/public/membresias/${m.id}/edit`">
-                <icon name="cheveron-right" class="block w-6 h-6 fill-gray-400" />
+              <icon name="cheveron-right" class="block w-6 h-6 fill-gray-400" />
               </Link>
             </td>
           </tr>
@@ -64,6 +66,8 @@ import Layout from '@/Shared/Layout.vue'
 import pickBy from 'lodash/pickBy'
 import mapValues from 'lodash/mapValues'
 import throttle from 'lodash/throttle'
+import { useCan } from '@/Composables/useCan'
+import { computed } from 'vue'
 
 export default {
   components: { Head, Link, Pagination, SearchFilter, Icon },
@@ -81,5 +85,17 @@ export default {
     },
   },
   methods: { reset() { this.form = mapValues(this.form, () => null) } },
+  setup() {
+    const { can } = useCan()
+
+    const canAny = computed(() =>
+      can('membresias editar')
+    )
+
+    return {
+      can,
+      canAny,
+    }
+  },
 }
 </script>

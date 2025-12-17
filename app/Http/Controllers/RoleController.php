@@ -24,7 +24,7 @@ class RoleController extends Controller
                     $q->where('name', 'like', "%{$search}%")
                         ->orWhere('description', 'like', "%{$search}%");
                 })
-                ->orderBy('name')
+                ->orderBy('id', 'asc')
                 ->paginate(10)
                 ->withQueryString()
                 ->through(fn($role) => [
@@ -54,13 +54,20 @@ class RoleController extends Controller
         $validated = $request->validate([
             'name' => ['required', 'max:50'],
             'description' => ['nullable', 'max:150'],
-            'estado' => ['required', Rule::in(['true', 'false'])],
+            'estado' => ['required'],
         ]);
+
+        $validated['estado'] = filter_var(
+            $validated['estado'],
+            FILTER_VALIDATE_BOOLEAN
+        );
 
         Role::create($validated);
 
-        return Redirect::route('roles.index')->with('success', 'Rol creado Correctamente.');
+        return Redirect::route('roles.index')
+            ->with('success', 'Rol creado Correctamente.');
     }
+
 
     /**
      * Display the specified resource.
@@ -93,16 +100,24 @@ class RoleController extends Controller
 
     public function update(Role $role, Request $request)
     {
+        // dd($request->all());
         $validated = $request->validate([
             'name' => ['required', 'max:50'],
             'description' => ['nullable', 'max:150'],
-            'estado' => ['required', Rule::in([true, false])],
+            'estado' => ['required'],
         ]);
+
+        $validated['estado'] = filter_var(
+            $validated['estado'],
+            FILTER_VALIDATE_BOOLEAN
+        );
 
         $role->update($validated);
 
-        return Redirect::back()->with('success', 'Rol actualizado correctamente.');
+        return Redirect::back()
+            ->with('success', 'Rol actualizado correctamente.');
     }
+
 
 
     public function destroy(Role $role)
@@ -114,7 +129,7 @@ class RoleController extends Controller
 
     public function updatePermissions(Request $request, string $id)
     {
-        
+
         $role = Role::findOrFail($id);
         $permissions = $request->input('permissions', []);
         $role->syncPermissions($permissions);

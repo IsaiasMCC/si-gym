@@ -12,22 +12,26 @@
         <div class="max-w-3xl rounded-md shadow overflow-hidden" :style="{ backgroundColor: 'var(--color-card-bg)' }">
             <form @submit.prevent="update">
                 <div class="p-8 flex flex-wrap -mr-6 -mb-8">
-                    <select-input v-model="form.user_id" class="pb-8 pr-6 w-full" label="Cliente" disabled>
-                        <option :value="form.user_id">{{ rutinaUsuario?.usuario?.nombres }}</option>
+                    <select-input v-for="cliente in clientes" v-model="form.user_id" class="pb-8 pr-6 w-full"
+                        label="Cliente" disabled>
+                        <option :value="form.user_id">{{ rutinaUsuario?.cliente?.nombres }} {{
+                            rutinaUsuario?.cliente?.apellidos }}</option>
                     </select-input>
 
-                    <select-input v-model="form.rutina_id" class="pb-8 pr-6 w-full" label="Rutina">
+                    <select-input v-model="form.rutina_id" class="pb-8 pr-6 w-full" label="Rutina"
+                        :error="form.errors.rutina_id">
                         <option v-for="r in rutinas" :key="r.id" :value="r.id">{{ r.nombre }}</option>
                     </select-input>
 
-                    <select-input v-model="form.estado" class="pb-8 pr-6 w-full" label="Estado">
+                    <select-input v-model="form.estado" class="pb-8 pr-6 w-full" label="Estado"
+                        :error="form.errors.estado">
                         <option value="activa">Activa</option>
                         <option value="finalizada">Finalizada</option>
                     </select-input>
                 </div>
 
                 <div class="flex items-center px-8 py-4 border-t">
-                    <button type="button" class="text-red-600" @click="destroy">Eliminar</button>
+                    <button v-if="canAny" type="button" class="text-red-600" @click="destroy">Eliminar</button>
                     <loading-button class="btn-indigo ml-auto" :loading="form.processing">
                         Guardar
                     </loading-button>
@@ -42,11 +46,13 @@ import { Head, Link } from '@inertiajs/vue3'
 import Layout from '@/Shared/Layout.vue'
 import SelectInput from '@/Shared/SelectInput.vue'
 import LoadingButton from '@/Shared/LoadingButton.vue'
+import { useCan } from '@/Composables/useCan'
+import { computed } from 'vue'
 
 export default {
     layout: Layout,
     components: { Head, Link, SelectInput, LoadingButton },
-    props: { rutinaUsuario: Object, rutinas: Array },
+    props: { rutinaUsuario: Object, clientes: Array, rutinas: Array },
     data() {
         return {
             form: this.$inertia.form({
@@ -64,6 +70,18 @@ export default {
             if (confirm('¿Eliminar asignación?'))
                 this.$inertia.delete(`/inf513/grupo18sc/proyecto2/sis-gym/public/rutinas-usuarios/${this.rutinaUsuario.id}`)
         },
+    },
+    setup() {
+        const { can } = useCan()
+
+        const canAny = computed(() =>
+            can('rutinas entrenador eliminar')
+        )
+
+        return {
+            can,
+            canAny,
+        }
     },
 }
 </script>

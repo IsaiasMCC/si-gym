@@ -33,7 +33,8 @@ class RutinaController extends Controller
     public function create()
     {
         return Inertia::render('Rutinas/Create', [
-            'entrenadores' => User::select('id', 'nombres', 'apellidos')->get(),
+            'entrenadores' => User::where('role_id', 2)
+                ->select('id', 'nombres', 'apellidos')->get(),
         ]);
     }
 

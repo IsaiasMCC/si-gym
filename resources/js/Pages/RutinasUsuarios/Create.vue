@@ -1,29 +1,35 @@
 <template>
   <div class="min-h-screen p-6">
+
     <Head title="Asignar Rutina" />
 
     <h1 class="mb-8 text-3xl font-bold">
       <Link class="text-indigo-400" href="/inf513/grupo18sc/proyecto2/sis-gym/public/rutinas-usuarios">
-        Rutinas
+      Rutinas
       </Link> / Asignar
     </h1>
 
-    <div class="max-w-3xl rounded-md shadow overflow-hidden" :style="{ backgroundColor:'var(--color-card-bg)' }">
+    <div class="max-w-3xl rounded-md shadow overflow-hidden" :style="{ backgroundColor: 'var(--color-card-bg)' }">
       <form @submit.prevent="store">
         <div class="p-8 flex flex-wrap -mr-6 -mb-8">
-          <select-input v-model="form.user_id" class="pb-8 pr-6 w-full" label="Cliente*">
+          <select-input v-model="form.user_id" class="pb-8 pr-6 w-full" label="Cliente*" :error="form.errors.user_id">
             <option :value="null" />
-            <option v-for="u in usuarios" :key="u.id" :value="u.id">
+            <option v-for="u in clientes" :key="u.id" :value="u.id">
               {{ u.nombres }} {{ u.apellidos }}
             </option>
           </select-input>
 
-          <select-input v-model="form.rutina_id" class="pb-8 pr-6 w-full" label="Rutina*">
+          <select-input v-model="form.rutina_id" class="pb-8 pr-6 w-full" label="Rutina*"
+            :error="form.errors.rutina_id">
             <option :value="null" />
-            <option v-for="r in rutinas" :key="r.id" :value="r.id">{{ r.nombre }}</option>
+            <option v-for="r in rutinas" :key="r.id" :value="r.id">
+              {{ r.nombre }}
+            </option>
           </select-input>
 
-          <text-input v-model="form.fecha_asignacion" type="date" class="pb-8 pr-6 w-full" label="Fecha*" />
+          <text-input v-model="form.fecha_asignacion" type="date" class="pb-8 pr-6 w-full" label="Fecha*"
+            :error="form.errors.fecha_asignacion" />
+
         </div>
 
         <div class="flex justify-end px-8 py-4 border-t">
@@ -46,7 +52,7 @@ import LoadingButton from '@/Shared/LoadingButton.vue'
 export default {
   layout: Layout,
   components: { Head, Link, TextInput, SelectInput, LoadingButton },
-  props: { usuarios: Array, rutinas: Array },
+  props: { clientes: Array, rutinas: Array },
   data() {
     return {
       form: this.$inertia.form({

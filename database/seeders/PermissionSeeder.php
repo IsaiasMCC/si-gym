@@ -18,7 +18,7 @@ class PermissionSeeder extends Seeder
             'roles agregar',
             'roles editar',
             'roles eliminar',
-            'roles permisos',
+            'roles permisos',       
 
             // Módulo Usuarios
             'usuarios visualizar',
@@ -26,36 +26,44 @@ class PermissionSeeder extends Seeder
             'usuarios editar',
             'usuarios eliminar',
 
-            // Módulo Servicios
-            'servicios visualizar',
-            'servicios agregar',
-            'servicios editar',
-            'servicios eliminar',
+            // Módulo Membresias
+            'membresias visualizar',
+            'membresias agregar',
+            'membresias editar',
+            'membresias eliminar',
 
-            // Módulo Métodos de Pago
-            'metodos-pagos visualizar',
-            'metodos-pagos agregar',
-            'metodos-pagos editar',
-            'metodos-pagos eliminar',
+            // Módulo Paquetes
+            'paquetes visualizar',
+            'paquetes agregar',
+            'paquetes editar',
+            'paquetes eliminar',
 
-            // Módulo Reservas
-            'reservas visualizar',
-            'reservas agregar',
-            'reservas editar',
-            'reservas eliminar',
-            'reservas cliente visualizar',
-            'reservas cliente editar',
-            'reservas empleado visualizar',
-            'reservas empleado editar',
+            // Módulo Rutinas
+            'rutinas visualizar',
+            'rutinas agregar',
+            'rutinas editar',
+            'rutinas eliminar',
 
-            //Catalogo
-            'catalogo servicios visualizar',
-            'catalogo servicios agregar',
+
+            // Modulo de clientes
+            'rutinas cliente visualizar',
+            
+            // Modulos de rutinas asignadas a clientes por entrenadores
+            'rutinas entrenador visualizar',
+            'rutinas entrenador agregar',
+            'rutinas entrenador editar',
+            'rutinas entrenador eliminar',
+
+            //Modulo de seguimientos de clientes por entrenadores
+            'seguimiento rutina visualizar',
+            'seguimiento rutina agregar',
+            'seguimiento rutina editar',
+            'seguimiento rutina eliminar',
+            
 
             // Módulo Reportes
-            'reporte servicios visualizar',
-            'reporte ventas visualizar',
-            'reporte avances visualizar',
+            'reporte seguimiento visualizar',
+            'reporte pagos visualizar',
 
         ];
 

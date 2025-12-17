@@ -40,7 +40,7 @@ class HandleInertiaRequests extends Middleware
             'auth' => function () use ($request) {
                 $user = $request->user();
 
-            if ($user) {
+                if ($user) {
                     return [
                         'user' => [
                             'id' => $user->id,
@@ -49,7 +49,10 @@ class HandleInertiaRequests extends Middleware
                             'email' => $user->email,
                             'permissions' => $user->getAllPermissions()->pluck('name')->toArray(),
                             'roles' => $user->getRoleNames()->toArray(),
-                        ]
+                        ],
+                        'permissions' => $request->user()
+                            ? $request->user()->getAllPermissions()->pluck('name')
+                            : [],
                     ];
                 }
 

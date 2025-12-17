@@ -15,7 +15,7 @@ class PagoReporteController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Pago::with(['planPago.subscripcion.usuario', 'planPago.subscripcion.membresia']);
+        $query = Pago::where('estado', 'pagado')->with(['planPago.subscripcion.usuario', 'planPago.subscripcion.membresia']);
 
         // Filtrar por fecha de pago
         if ($request->filled('fecha')) {

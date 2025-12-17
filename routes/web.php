@@ -44,7 +44,7 @@ Route::get('/inf513/grupo18sc/proyecto2/sis-gym/public/register', [Authenticated
     ->name('index_create')
     ->middleware('guest');
 
-Route::post('/register', [AuthenticatedSessionController::class, 'register'])
+Route::post('/inf513/grupo18sc/proyecto2/sis-gym/public/register', [AuthenticatedSessionController::class, 'register'])
     ->name('register')
     ->middleware('guest');
 
@@ -70,8 +70,8 @@ Route::patch('/inf513/grupo18sc/proyecto2/sis-gym/public/roles/permisos/{id}', [
 // Route::get('/inf513/grupo18sc/proyecto2/sis-gym/public/contratar-servicios', [ReservaController::class, 'catalogo'])->name('reservas.catalogo');
 Route::resource('inf513/grupo18sc/proyecto2/sis-gym/public/usuarios', UsuarioController::class);
 
-Route::post('/pagofacil/generar-qr', [PagoFacilController::class, 'generarQR']);
-Route::post('/pagofacil/consultar-estado', [PagoFacilController::class, 'consultarEstado']);
+Route::post('/inf513/grupo18sc/proyecto2/sis-gym/public/pagofacil/generar-qr', [PagoFacilController::class, 'generarQR']);
+Route::post('/inf513/grupo18sc/proyecto2/sis-gym/public/pagofacil/consultar-estado', [PagoFacilController::class, 'consultarEstado']);
 
 Route::resource('inf513/grupo18sc/proyecto2/sis-gym/public/membresias', MembresiaController::class);
 Route::resource('inf513/grupo18sc/proyecto2/sis-gym/public/paquetes', PaqueteController::class);
@@ -97,7 +97,16 @@ Route::get('/inf513/grupo18sc/proyecto2/sis-gym/public/subscripciones/{subscripc
 
 // Planes de pago
 Route::post('/inf513/grupo18sc/proyecto2/sis-gym/public/plan-pagos/{planPago}/pagar', [PlanPagoController::class, 'pagar'])->name('plan-pagos.pagar');
-Route::resource('inf513/grupo18sc/proyecto2/sis-gym/public/seguimientos', SeguimientoController::class);
+// Route::resource('inf513/grupo18sc/proyecto2/sis-gym/public/seguimientos', SeguimientoController::class);
+
+// Seguimientos
+
+Route::get('inf513/grupo18sc/proyecto2/sis-gym/public/seguimientos/{id}', [SeguimientoController::class, 'index'])->name('seguimientos.index');
+Route::get('inf513/grupo18sc/proyecto2/sis-gym/public/seguimientos/create/{id}', [SeguimientoController::class, 'create'])->name('seguimientos.create');
+Route::post('inf513/grupo18sc/proyecto2/sis-gym/public/seguimientos', [SeguimientoController::class, 'store'])->name('seguimientos.store');
+Route::get('inf513/grupo18sc/proyecto2/sis-gym/public/seguimientos/{seguimiento}/edit', [SeguimientoController::class, 'edit'])->name('seguimientos.edit');
+Route::put('inf513/grupo18sc/proyecto2/sis-gym/public/seguimientos/{seguimiento}', [SeguimientoController::class, 'update'])->name('seguimientos.update');
+Route::delete('inf513/grupo18sc/proyecto2/sis-gym/public/seguimientos/{seguimiento}', [SeguimientoController::class, 'destroy'])->name('seguimientos.destroy');
 
 Route::get('/test-login-pagofacil', function () {
     $tokenService = "51247fae280c20410824977b0781453df59fad5b23bf2a0d14e884482f91e09078dbe5966e0b970ba696ec4caf9aa5661802935f86717c481f1670e63f35d504a62547a9de71bfc76be2c2ae01039ebcb0f74a96f0f1f56542c8b51ef7a2a6da9ea16f23e52ecc4485b69640297a5ec6a701498d2f0e1b4e7f4b7803bf5c2eba";

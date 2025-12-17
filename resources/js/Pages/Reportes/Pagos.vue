@@ -26,24 +26,28 @@
         <thead>
           <tr class="text-left font-bold">
             <th class="px-6 py-4">ID</th>
-            <th class="px-6 py-4">Usuario</th>
             <th class="px-6 py-4">Membresía</th>
+            <th class="px-6 py-4">Usuario</th>
             <th class="px-6 py-4">Tipo Pago</th>
+            <th class="px-6 py-4">Metodo Pago</th>
             <th class="px-6 py-4">Monto (Bs)</th>
             <th class="px-6 py-4">Saldo (Bs)</th>
             <th class="px-6 py-4">Estado</th>
+            <th class="px-6 py-4">Fecha Limite</th>
             <th class="px-6 py-4">Fecha Pago</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="pago in pagos.data" :key="pago.id" class="border-t transition-colors duration-300">
             <td class="px-6 py-4">{{ pago.id }}</td>
-            <td class="px-6 py-4">{{ pago.plan_pago.subscripcion.usuario.nombres }} {{ pago.plan_pago.subscripcion.usuario.apellidos }}</td>
             <td class="px-6 py-4">{{ pago.plan_pago.subscripcion.membresia.nombre }}</td>
+            <td class="px-6 py-4">{{ pago.plan_pago.subscripcion.usuario.nombres }} {{ pago.plan_pago.subscripcion.usuario.apellidos }}</td>
             <td class="px-6 py-4">{{ pago.plan_pago.tipo_pago }}</td>
+            <td class="px-6 py-4">{{ pago.metodo_pago }}</td>
             <td class="px-6 py-4">{{ pago.monto }}</td>
             <td class="px-6 py-4">{{ pago.plan_pago.saldo }}</td>
             <td class="px-6 py-4">{{ pago.estado }}</td>
+            <td class="px-6 py-4">{{ pago.plan_pago.fecha_vencimiento }}</td>
             <td class="px-6 py-4">{{ pago.fecha_pago }}</td>
           </tr>
           <tr v-if="pagos.data.length === 0">

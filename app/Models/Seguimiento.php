@@ -10,7 +10,7 @@ class Seguimiento extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
+        'rutina_usuario_id',
         'peso',
         'altura',
         'imc',

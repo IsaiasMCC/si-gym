@@ -9,7 +9,8 @@ class RutinaUsuario extends Model
     protected $table = 'rutina_usuarios';
     protected $fillable = [
         'rutina_id',
-        'user_id',
+        'cliente_id',
+        'instructor_id',
         'fecha_asignacion',
         'estado'
     ];
@@ -18,8 +19,13 @@ class RutinaUsuario extends Model
     {
         return $this->belongsTo(Rutina::class);
     }
-    public function usuario()
+    public function cliente()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'cliente_id');
+    }
+    
+    public function instructor()
+    {
+        return $this->belongsTo(User::class, 'instructor_id');
     }
 }

@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('rutina_usuarios', function (Blueprint $table) {
             $table->id();
             $table->foreignId('rutina_id')->constrained('rutinas')->cascadeOnDelete();
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('cliente_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('instructor_id')->constrained('users')->cascadeOnDelete();
             $table->date('fecha_asignacion');
             $table->enum('estado', ['activa', 'finalizada'])->default('activa');
             $table->timestamps();

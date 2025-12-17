@@ -23,7 +23,7 @@ class UsuarioController extends Controller
                         ->orWhere('apellidos', 'like', "%{$search}%")
                         ->orWhere('email', 'like', "%{$search}%")
                 )
-                ->orderBy('nombres')
+                ->orderBy('id')
                 ->paginate(10)
                 ->withQueryString()
                 ->through(fn($user) => [

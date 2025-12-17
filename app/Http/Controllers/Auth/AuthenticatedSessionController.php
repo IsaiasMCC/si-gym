@@ -26,18 +26,25 @@ class AuthenticatedSessionController extends Controller
     {
         return Inertia::render('Auth/Register');
     }
-
     /**
      * Handle an incoming authentication request.
      */
+
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
-
         $request->session()->regenerate();
 
-        return redirect()->intended(AppServiceProvider::HOME);
+        $user = $request->user(); // Usuario autenticado
+
+        // Redirección según el user_id o rol
+        if ($user->role_id === 3) {
+            return redirect()->route('subscripciones.index');
+        } else {
+            return redirect()->route('dashboard');
+        }
     }
+
 
     /**
      * Destroy an authenticated session.
@@ -75,6 +82,6 @@ class AuthenticatedSessionController extends Controller
 
         Auth::login($user);
 
-        return redirect('/inf513/grupo18sc/proyecto2/sis-gym/public/login');
+        return redirect('/inf513/grupo18sc/proyecto2/sis-gym/public/subscripciones');
     }
 }

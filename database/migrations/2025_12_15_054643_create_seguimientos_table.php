@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('seguimientos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('rutina_usuario_id')->constrained('rutina_usuarios')->cascadeOnDelete();
             $table->decimal('peso', 5, 2);
             $table->decimal('altura', 4, 2);
             $table->decimal('imc', 5, 2)->nullable();

@@ -83,19 +83,91 @@
             <button @click="closeModal" class="px-4 py-2 rounded bg-gray-700 hover:bg-gray-600 text-white">
               Cancelar
             </button>
-            <button @click="confirmarPago" class="px-4 py-2 rounded bg-indigo-500 hover:bg-indigo-400 text-white"
-              :disabled="!metodoPago">
+            <button @click="confirmarPago" :disabled="!metodoPago || loadingQr"
+              class="px-4 py-2 rounded bg-indigo-500 hover:bg-indigo-400 text-white">
               Pagar
             </button>
+
           </div>
         </div>
       </div>
+
+      <!-- Modal de éxito -->
+      <div v-if="showSuccessModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+        <div class="bg-gray-900 rounded-xl shadow-lg max-w-md w-full p-6 text-center">
+          <h3 class="text-2xl font-bold text-green-400 mb-4">
+            ✅ Pago realizado
+          </h3>
+
+          <p class="text-gray-300 mb-6">
+            El pago se completó exitosamente.
+          </p>
+
+          <button @click="showSuccessModal = false"
+            class="px-6 py-2 rounded bg-indigo-500 hover:bg-indigo-400 text-white font-semibold">
+            Aceptar
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal QR -->
+      <div v-if="showQrModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
+        <div class="bg-gray-900 rounded-xl shadow-lg max-w-md w-full p-6 text-center">
+          <h3 class="text-xl font-bold text-white mb-4">
+            Escanea para pagar
+          </h3>
+
+          <img v-if="qrImage" :src="qrImage" class="mx-auto mb-4 w-64 h-64" />
+
+          <!-- Estado del pago -->
+          <p v-if="estadoPago" class="text-sm mb-3" :class="{
+            'text-yellow-400': estadoPago === 'PENDIENTE',
+            'text-green-400': estadoPago === 'COMPLETADO',
+            'text-red-400': estadoPago === 'RECHAZADO' || estadoPago === 'ANULADO'
+          }">
+            Estado: {{ estadoPago }}
+          </p>
+
+          <!-- Botón consultar -->
+          <button @click="consultarPago" :disabled="consultandoEstado"
+            class="w-full mb-3 px-4 py-2 rounded bg-indigo-500 hover:bg-indigo-400 text-white font-semibold">
+            {{ consultandoEstado ? 'Consultando...' : 'Consultar pago' }}
+          </button>
+
+          <p class="text-gray-400 mb-4 text-sm">
+            Esperando confirmación del pago...
+          </p>
+
+          <button @click="cancelarQr" class="px-4 py-2 rounded bg-gray-700 hover:bg-gray-600 text-white">
+            Cancelar
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal loading QR -->
+      <div v-if="loadingQr" class="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
+        <div class="bg-gray-900 rounded-xl shadow-lg max-w-sm w-full p-6 text-center">
+          <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-500 mx-auto mb-4"></div>
+
+          <p class="text-gray-300 font-semibold">
+            Generando código QR...
+          </p>
+
+          <p class="text-gray-500 text-sm mt-2">
+            Por favor espere
+          </p>
+        </div>
+      </div>
+
+
+
     </section>
   </GymLayout>
 </template>
 
 <script>
 import GymLayout from '@/Shared/GymLayout.vue'
+import axios from 'axios'
 
 export default {
   components: { GymLayout },
@@ -105,10 +177,20 @@ export default {
   data() {
     return {
       showModal: false,
+      showSuccessModal: false,
+      showQrModal: false,
+      loadingQr: false,
+      consultandoEstado: false, // 👈 NUEVO
+      estadoPago: null,         // 👈 NUEVO
+      qrImage: null,
+      qrTransaccionId: null,
       selectedPlan: null,
       metodoPago: ''
     }
-  },
+  }
+  ,
+
+
   methods: {
     calcularTotal(subs) {
       const precioMembresia = Number(subs.membresia.precio_base) || 0
@@ -130,19 +212,102 @@ export default {
     confirmarPago() {
       if (!this.metodoPago) return
 
+      if (this.metodoPago === 'efectivo') {
+        this.pagarEfectivo()
+      }
+
+      if (this.metodoPago === 'qr') {
+        this.generarQr()
+      }
+    },
+    pagarEfectivo() {
       this.$inertia.post(
         `/inf513/grupo18sc/proyecto2/sis-gym/public/plan-pagos/${this.selectedPlan.id}/pagar`,
         {
-          metodo_pago: this.metodoPago,
+          metodo_pago: 'efectivo',
           referencia: null
         },
         {
           onSuccess: () => {
-            this.closeModal()
+            this.showModal = false
+            this.showSuccessModal = true
+            this.selectedPlan = null
+            this.metodoPago = ''
           }
         }
       )
+    },
+    generarQr() {
+      this.loadingQr = true
+      this.showModal = false   // 👈 cerrar modal de pago inmediatamente
+
+      axios.post(
+        '/inf513/grupo18sc/proyecto2/sis-gym/public/pagofacil/generar-qr',
+        {
+          pago_id: this.selectedPlan.id,
+          monto: this.selectedPlan.monto
+        }
+      )
+        .then(response => {
+          const data = response.data
+
+          this.qrImage = data.qr
+          this.qrTransaccionId = data.transaccion
+
+          this.showQrModal = true
+        })
+        .catch(error => {
+          console.error(error)
+          alert('Error al generar el QR')
+        })
+        .finally(() => {
+          this.loadingQr = false   // 👈 apagar loading
+        })
+    },
+
+    cancelarQr() {
+      this.showQrModal = false
+      this.qrImage = null
+      this.qrTransaccionId = null
+      this.estadoPago = null
+    },
+    consultarPago() {
+      if (!this.qrTransaccionId) return
+
+      this.consultandoEstado = true
+
+      axios.post(
+        '/inf513/grupo18sc/proyecto2/sis-gym/public/pagofacil/consultar-estado',
+        {
+          tnTransaccion: this.qrTransaccionId
+        }
+      )
+        .then(response => {
+          console.log(response.data)
+          this.estadoPago = response.data.estado
+
+          // ✅ Si se completó el pago
+          if (this.estadoPago === 'COMPLETADO') {
+            this.showQrModal = false
+            this.showSuccessModal = true
+
+            // limpiar estado
+            this.qrImage = null
+            this.qrTransaccionId = null
+            this.estadoPago = null
+          }
+        })
+        .catch(error => {
+          console.error(error)
+          alert('Error al consultar el estado del pago')
+        })
+        .finally(() => {
+          this.consultandoEstado = false
+        })
     }
+
+
+
 
   }
 }
