@@ -7,7 +7,7 @@
       <h1 class="text-3xl font-bold">Rutinas Asignadas</h1>
 
       <Link v-if="can('rutinas entrenador agregar')" class="btn-indigo"
-        href="/inf513/grupo18sc/proyecto2/sis-gym/public/rutinas-usuarios/create">
+        href="/rutinas-usuarios/create">
       Asignar Rutina
       </Link>
     </div>
@@ -35,12 +35,12 @@
             <td class="px-6 py-4">{{ ru.estado }}</td>
             <div v-if="canAny">
               <td class="px-6 py-4" v-if="can('rutinas entrenador editar')">
-                <Link :href="`/inf513/grupo18sc/proyecto2/sis-gym/public/rutinas-usuarios/${ru.id}/edit`">
+                <Link :href="`/rutinas-usuarios/${ru.id}/edit`">
                 Editar
                 </Link>
               </td>
               <td class="px-6 py-4" v-if="can('seguimiento rutina visualizar')">
-                <Link :href="`/inf513/grupo18sc/proyecto2/sis-gym/public/seguimientos/${ru.id}`">
+                <Link :href="`/seguimientos/${ru.id}`">
                 Ver Seguimiento
                 </Link>
               </td>

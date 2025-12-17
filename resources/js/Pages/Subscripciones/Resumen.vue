@@ -80,7 +80,7 @@ export default {
       if (!this.tipo_pago) return
 
       const paqueteIds = this.paquetes.map(p => p.id)
-      this.$inertia.post(`/inf513/grupo18sc/proyecto2/sis-gym/public/subscripciones/${this.membresia.id}/confirmar`, {
+      this.$inertia.post(`/subscripciones/${this.membresia.id}/confirmar`, {
         paquetes: paqueteIds,
         tipo_pago: this.tipo_pago
       })

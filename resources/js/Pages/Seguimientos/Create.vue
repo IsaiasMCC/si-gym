@@ -4,7 +4,7 @@
     <Head title="Nuevo Seguimiento" />
 
     <h1 class="mb-8 text-3xl font-bold">
-      <Link class="text-indigo-400" href="/inf513/grupo18sc/proyecto2/sis-gym/public/seguimientos">Seguimientos</Link> /
+      <Link class="text-indigo-400" href="/seguimientos">Seguimientos</Link> /
       Crear
     </h1>
     <div class="mb-6 p-6 max-w-3xl rounded-md shadow overflow-hidden"
@@ -37,7 +37,7 @@
         </div>
         <div class="flex justify-between px-8 py-4 border-t">
           <Link class="btn-indigo bg-red-500 me-2"
-            :href="`/inf513/grupo18sc/proyecto2/sis-gym/public/seguimientos/${rutinaUsuario.id}`">
+            :href="`/seguimientos/${rutinaUsuario.id}`">
           volver </Link>
           <loading-button :loading="form.processing" class="btn-indigo">Guardar Seguimiento</loading-button>
         </div>
@@ -71,7 +71,7 @@ export default {
   },
   methods: {
     store() {
-      this.form.post('/inf513/grupo18sc/proyecto2/sis-gym/public/seguimientos')
+      this.form.post('/seguimientos')
     },
   },
 }

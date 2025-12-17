@@ -43,7 +43,7 @@
 
         <!-- Botón funcional usando Link -->
         <Link
-          :href="`/inf513/grupo18sc/proyecto2/sis-gym/public/paquetes-adicional/${m.id}`"
+          :href="`/paquetes-adicional/${m.id}`"
           class="w-full bg-indigo-500 py-2 rounded-xl font-semibold hover:bg-indigo-400 transition inline-block text-center"
         >
           Elegir membresía

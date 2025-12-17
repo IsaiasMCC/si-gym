@@ -13,7 +13,7 @@
         </select>
       </search-filter>
 
-      <Link class="btn-indigo" href="/inf513/grupo18sc/proyecto2/sis-gym/public/servicios/create">
+      <Link class="btn-indigo" href="/servicios/create">
         <span>Crear</span>
         <span class="hidden md:inline">&nbsp;Servicio</span>
       </Link>
@@ -37,7 +37,7 @@
               class="border-t transition-colors duration-300 hover:bg-[var(--color-hover)]"
           >
             <td class="px-6 py-4">
-              <Link :href="`/inf513/grupo18sc/proyecto2/sis-gym/public/servicios/${servicio.id}/edit`" class="block w-full" style="color: var(--color-text)">
+              <Link :href="`/servicios/${servicio.id}/edit`" class="block w-full" style="color: var(--color-text)">
                 {{ servicio.nombre }}
               </Link>
             </td>
@@ -45,7 +45,7 @@
             <td class="px-6 py-4" style="color: var(--color-text)">{{ servicio.precio }}</td>
             <td class="px-6 py-4" style="color: var(--color-text)">{{ servicio.estado ? 'Activo' : 'Inactivo' }}</td>
             <td class="px-4 py-4 w-px">
-              <Link :href="`/inf513/grupo18sc/proyecto2/sis-gym/public/servicios/${servicio.id}/edit`">
+              <Link :href="`/servicios/${servicio.id}/edit`">
                 <icon name="cheveron-right" class="block w-6 h-6 fill-gray-400" />
               </Link>
             </td>
@@ -97,7 +97,7 @@ export default {
     form: {
       deep: true,
       handler: throttle(function () {
-        this.$inertia.get('/inf513/grupo18sc/proyecto2/sis-gym/public/servicios', pickBy(this.form), { preserveState: true })
+        this.$inertia.get('/servicios', pickBy(this.form), { preserveState: true })
       }, 150),
     },
   },

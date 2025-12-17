@@ -38,7 +38,7 @@
                     </p>
 
                     <!-- Botón ver detalle -->
-                    <Link :href="`/inf513/grupo18sc/proyecto2/sis-gym/public/mis-subscripciones/${s.id}`" class="w-full bg-indigo-500 py-2 px-3 rounded-xl font-semibold hover:bg-indigo-400 transition">
+                    <Link :href="`/mis-subscripciones/${s.id}`" class="w-full bg-indigo-500 py-2 px-3 rounded-xl font-semibold hover:bg-indigo-400 transition">
                         Ver detalle
                     </Link>
                 </div>

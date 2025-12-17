@@ -4,7 +4,7 @@
         <Head title="Editar Rutina" />
 
         <h1 class="mb-8 text-3xl font-bold">
-            <Link class="text-indigo-400" href="/inf513/grupo18sc/proyecto2/sis-gym/public/rutinas-usuarios">
+            <Link class="text-indigo-400" href="/rutinas-usuarios">
             Rutinas
             </Link> / Editar
         </h1>
@@ -64,11 +64,11 @@ export default {
     },
     methods: {
         update() {
-            this.form.put(`/inf513/grupo18sc/proyecto2/sis-gym/public/rutinas-usuarios/${this.rutinaUsuario.id}`)
+            this.form.put(`/rutinas-usuarios/${this.rutinaUsuario.id}`)
         },
         destroy() {
             if (confirm('¿Eliminar asignación?'))
-                this.$inertia.delete(`/inf513/grupo18sc/proyecto2/sis-gym/public/rutinas-usuarios/${this.rutinaUsuario.id}`)
+                this.$inertia.delete(`/rutinas-usuarios/${this.rutinaUsuario.id}`)
         },
     },
     setup() {

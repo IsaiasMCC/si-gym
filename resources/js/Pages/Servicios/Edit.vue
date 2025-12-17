@@ -85,10 +85,10 @@ export default {
     }
   },
   methods: {
-    update() { this.form.put(`/inf513/grupo18sc/proyecto2/sis-gym/public/servicios/${this.servicio.id}`) },
+    update() { this.form.put(`/servicios/${this.servicio.id}`) },
     destroy() {
       if (confirm('¿Estás seguro de eliminar este servicio?')) {
-        this.$inertia.delete(`/inf513/grupo18sc/proyecto2/sis-gym/public/servicios/${this.servicio.id}`)
+        this.$inertia.delete(`/servicios/${this.servicio.id}`)
       }
     },
   },

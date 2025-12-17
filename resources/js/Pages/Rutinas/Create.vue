@@ -2,7 +2,7 @@
   <div class="min-h-screen p-6" :style="{ color: 'var(--color-text)', backgroundColor: 'var(--color-bg)' }">
     <Head title="Crear Rutina" />
     <h1 class="mb-8 text-3xl font-bold">
-      <Link class="text-indigo-400 hover:text-indigo-600" href="/inf513/grupo18sc/proyecto2/sis-gym/public/rutinas">Rutinas</Link>
+      <Link class="text-indigo-400 hover:text-indigo-600" href="/rutinas">Rutinas</Link>
       <span class="text-indigo-400 font-medium">/</span> Crear
     </h1>
 
@@ -53,6 +53,6 @@ export default {
       }),
     }
   },
-  methods: { store() { this.form.post('/inf513/grupo18sc/proyecto2/sis-gym/public/rutinas') } },
+  methods: { store() { this.form.post('/rutinas') } },
 }
 </script>

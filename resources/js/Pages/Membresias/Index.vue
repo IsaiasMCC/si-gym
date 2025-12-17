@@ -10,7 +10,7 @@
         <input v-model="form.search" type="text" class="form-input mt-1 w-full" placeholder="Buscar membresías..." />
       </search-filter>
 
-      <Link v-if="can('membresias agregar')" class="btn-indigo" href="/inf513/grupo18sc/proyecto2/sis-gym/public/membresias/create">
+      <Link v-if="can('membresias agregar')" class="btn-indigo" href="/membresias/create">
       <span>Crear</span>
       <span class="hidden md:inline">&nbsp;Membresía</span>
       </Link>
@@ -34,14 +34,14 @@
             @mouseover="hover = m.id" @mouseleave="hover = null"
             :class="hover === m.id ? 'bg-[var(--color-hover)]' : ''">
             <td class="px-6 py-4">
-              <Link :href="`/inf513/grupo18sc/proyecto2/sis-gym/public/membresias/${m.id}/edit`">{{ m.nombre }}</Link>
+              <Link :href="`/membresias/${m.id}/edit`">{{ m.nombre }}</Link>
             </td>
             <td class="px-6 py-4">{{ m.duracion_dias }}</td>
             <td class="px-6 py-4">{{ m.precio_base }}</td>
             <td class="px-6 py-4">{{ m.descripcion }}</td>
             <td class="px-6 py-4">{{ m.estado }}</td>
             <td class="px-4 py-4 w-px" v-if="canAny">
-              <Link :href="`/inf513/grupo18sc/proyecto2/sis-gym/public/membresias/${m.id}/edit`">
+              <Link :href="`/membresias/${m.id}/edit`">
               <icon name="cheveron-right" class="block w-6 h-6 fill-gray-400" />
               </Link>
             </td>
@@ -80,7 +80,7 @@ export default {
     form: {
       deep: true,
       handler: throttle(function () {
-        this.$inertia.get('/inf513/grupo18sc/proyecto2/sis-gym/public/membresias', pickBy(this.form), { preserveState: true })
+        this.$inertia.get('/membresias', pickBy(this.form), { preserveState: true })
       }, 150),
     },
   },

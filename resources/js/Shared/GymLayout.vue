@@ -10,9 +10,9 @@
 
         <!-- Nav -->
         <nav class="flex items-center space-x-6">
-          <Link href="/inf513/grupo18sc/proyecto2/sis-gym/public/subscripciones"
+          <Link href="/subscripciones"
             class="hover:text-indigo-300 transition font-medium">Inicio</Link>
-          <Link href="/inf513/grupo18sc/proyecto2/sis-gym/public/catalogos"
+          <Link href="/catalogos"
             class="hover:text-indigo-300 transition font-medium">Membresias</Link>
           <a href="#clases" class="hover:text-indigo-300 transition font-medium">Paquetes</a>
 
@@ -33,7 +33,7 @@
             </span>
 
             <!-- Botón auth -->
-            <Link href="/inf513/grupo18sc/proyecto2/sis-gym/public/logout" method="delete" as="button"
+            <Link href="/logout" method="delete" as="button"
               class="bg-red-500 px-3 py-1 rounded text-sm hover:bg-red-400 transition text-white shadow-sm">
             Cerrar sesión
             </Link>
@@ -41,7 +41,7 @@
 
           <!-- Si no está logueado -->
           <div v-else>
-            <Link href="/inf513/grupo18sc/proyecto2/sis-gym/public/login"
+            <Link href="/login"
               class="bg-indigo-500 px-3 py-1 rounded text-sm hover:bg-indigo-400 transition text-white shadow-sm">
               Iniciar sesión
             </Link>

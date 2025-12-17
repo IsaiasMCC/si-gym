@@ -10,7 +10,7 @@
         <input v-model="form.search" type="text" class="form-input mt-1 w-full" placeholder="Buscar usuarios..." />
       </search-filter>
 
-      <Link class="btn-indigo" v-if="can('usuarios agregar')" href="/inf513/grupo18sc/proyecto2/sis-gym/public/usuarios/create">
+      <Link class="btn-indigo" v-if="can('usuarios agregar')" href="/usuarios/create">
       <span>Crear</span>
       <span class="hidden md:inline">&nbsp;Usuario</span>
       </Link>
@@ -36,31 +36,31 @@
             :style="{ backgroundColor: 'var(--color-card-bg)' }" @mouseover="hover = user.id" @mouseleave="hover = null"
             :class="hover === user.id ? 'bg-[var(--color-hover)]' : ''">
             <td class="px-6 py-4" >
-              <Link  :href="`/inf513/grupo18sc/proyecto2/sis-gym/public/usuarios/${user.id}/edit`"
+              <Link  :href="`/usuarios/${user.id}/edit`"
                 :style="{ color: 'var(--color-text)' }">{{ user.ci }}</Link>
             </td>
             <td class="px-6 py-4">
-              <Link :href="`/inf513/grupo18sc/proyecto2/sis-gym/public/usuarios/${user.id}/edit`"
+              <Link :href="`/usuarios/${user.id}/edit`"
                 :style="{ color: 'var(--color-text)' }">{{ user.nombres }}</Link>
             </td>
             <td class="px-6 py-4">
-              <Link :href="`/inf513/grupo18sc/proyecto2/sis-gym/public/usuarios/${user.id}/edit`"
+              <Link :href="`/usuarios/${user.id}/edit`"
                 :style="{ color: 'var(--color-text)' }">{{ user.apellidos }}</Link>
             </td>
             <td class="px-6 py-4">
-              <Link :href="`/inf513/grupo18sc/proyecto2/sis-gym/public/usuarios/${user.id}/edit`"
+              <Link :href="`/usuarios/${user.id}/edit`"
                 :style="{ color: 'var(--color-text)' }">{{ user.email }}</Link>
             </td>
             <td class="px-6 py-4">
-              <Link :href="`/inf513/grupo18sc/proyecto2/sis-gym/public/usuarios/${user.id}/edit`"
+              <Link :href="`/usuarios/${user.id}/edit`"
                 :style="{ color: 'var(--color-text)' }">{{ user.role?.name ?? '-' }}</Link>
             </td>
             <td class="px-6 py-4">
-              <Link :href="`/inf513/grupo18sc/proyecto2/sis-gym/public/usuarios/${user.id}/edit`"
+              <Link :href="`/usuarios/${user.id}/edit`"
                 :style="{ color: 'var(--color-text)' }">{{ user.estado ? 'Activo' : 'Inactivo' }}</Link>
             </td>
             <td class="px-4 py-4 w-px" v-if="canAny">
-              <Link :href="`/inf513/grupo18sc/proyecto2/sis-gym/public/usuarios/${user.id}/edit`">
+              <Link :href="`/usuarios/${user.id}/edit`">
               <icon name="cheveron-right" class="block w-6 h-6 fill-gray-400" />
               </Link>
             </td>
@@ -102,7 +102,7 @@ export default {
     form: {
       deep: true,
       handler: throttle(function () {
-        this.$inertia.get('/inf513/grupo18sc/proyecto2/sis-gym/public/usuarios', pickBy(this.form), { preserveState: true })
+        this.$inertia.get('/usuarios', pickBy(this.form), { preserveState: true })
       }, 150),
     },
   },

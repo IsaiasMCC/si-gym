@@ -9,7 +9,7 @@
       <div class="md:flex md:shrink-0">
         <div :style="{ backgroundColor: 'var(--color-primary)', color: 'var(--color-text)' }"
           class="flex items-center justify-between px-6 py-4 md:shrink-0 md:justify-center md:w-56">
-          <Link class="mt-1" href="/inf513/grupo18sc/proyecto2/sis-gym/public/">
+          <Link class="mt-1" href="/">
             <Logo class="fill-white" width="120" height="28" />
           </Link>
 
@@ -140,7 +140,7 @@
               <template #dropdown>
                 <div class="mt-2 py-2 text-sm bg-white rounded shadow-xl">
                   <Link class="block px-6 py-2 w-full text-left hover:text-white hover:bg-indigo-500"
-                    href="/inf513/grupo18sc/proyecto2/sis-gym/public/logout"
+                    href="/logout"
                     method="delete" as="button">
                     Logout
                   </Link>
@@ -191,7 +191,7 @@ export default {
 
     function search() {
       if (!searchQuery.value) return
-      router.get('/inf513/grupo18sc/proyecto2/sis-gym/public/search', { q: searchQuery.value })
+      router.get('/search', { q: searchQuery.value })
     }
 
     const menus = ref({ theme: false, mode: false, font: false, contrast: false })

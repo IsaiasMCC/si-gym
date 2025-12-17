@@ -3,7 +3,7 @@
 
     <Head :title="form.nombre" />
     <h1 class="mb-8 text-3xl font-bold">
-      <Link class="text-indigo-400 hover:text-indigo-600" href="/inf513/grupo18sc/proyecto2/sis-gym/public/rutinas">
+      <Link class="text-indigo-400 hover:text-indigo-600" href="/rutinas">
       Rutinas</Link>
       <span class="text-indigo-400 font-medium">/</span> Editar {{ form.nombre }}
     </h1>
@@ -66,8 +66,8 @@ export default {
     }
   },
   methods: {
-    update() { this.form.put(`/inf513/grupo18sc/proyecto2/sis-gym/public/rutinas/${this.rutina.id}`) },
-    destroy() { if (confirm('¿Seguro que quieres eliminar esta rutina?')) this.$inertia.delete(`/inf513/grupo18sc/proyecto2/sis-gym/public/rutinas/${this.rutina.id}`) },
+    update() { this.form.put(`/rutinas/${this.rutina.id}`) },
+    destroy() { if (confirm('¿Seguro que quieres eliminar esta rutina?')) this.$inertia.delete(`/rutinas/${this.rutina.id}`) },
   },
   setup() {
     const { can } = useCan()

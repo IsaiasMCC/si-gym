@@ -78,7 +78,7 @@ export default {
     form: {
       deep: true,
       handler: throttle(function() {
-        this.$inertia.get('/inf513/grupo18sc/proyecto2/sis-gym/public/reservas/reportes', pickBy(this.form), { preserveState: true })
+        this.$inertia.get('/reservas/reportes', pickBy(this.form), { preserveState: true })
       }, 150),
     }
   },
@@ -88,7 +88,7 @@ export default {
     },
     exportar(tipo) {
       const query = pickBy(this.form)
-      window.open(`/inf513/grupo18sc/proyecto2/sis-gym/public/reservas/reportes/export?tipo=${tipo}&${new URLSearchParams(query)}`, '_blank')
+      window.open(`/reservas/reportes/export?tipo=${tipo}&${new URLSearchParams(query)}`, '_blank')
     }
   }
 }

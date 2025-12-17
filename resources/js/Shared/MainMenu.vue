@@ -61,36 +61,36 @@ export default {
         {
           label: "Gestión de Usuarios",
           items: [
-            { label: "Roles", href: "/inf513/grupo18sc/proyecto2/sis-gym/public/roles", icon: "shield-check", permission: "roles visualizar" },
-            { label: "Usuarios", href: "/inf513/grupo18sc/proyecto2/sis-gym/public/usuarios", icon: "users", permission: "usuarios visualizar" },
+            { label: "Roles", href: "/roles", icon: "shield-check", permission: "roles visualizar" },
+            { label: "Usuarios", href: "/usuarios", icon: "users", permission: "usuarios visualizar" },
           ],
         },
         {
           label: "Gestión de Membresias y Paquetes",
           items: [
-            { label: "Membresias", href: "/inf513/grupo18sc/proyecto2/sis-gym/public/membresias", icon: "credit-card", permission: "membresias visualizar" },
-            { label: "Paquetes", href: "/inf513/grupo18sc/proyecto2/sis-gym/public/paquetes", icon: "archive", permission: "paquetes visualizar" },
-            { label: "Rutinas", href: "/inf513/grupo18sc/proyecto2/sis-gym/public/rutinas", icon: "clock", permission: "rutinas visualizar" },
+            { label: "Membresias", href: "/membresias", icon: "credit-card", permission: "membresias visualizar" },
+            { label: "Paquetes", href: "/paquetes", icon: "archive", permission: "paquetes visualizar" },
+            { label: "Rutinas", href: "/rutinas", icon: "clock", permission: "rutinas visualizar" },
           ],
         },
         {
           label: "Gestión de Subscripciones / Clientes",
           items: [
-            { label: "Mis Membresias", href: "/inf513/grupo18sc/proyecto2/sis-gym/public/subscripciones", icon: "calendar", permission: "rutinas cliente visualizar" },
+            { label: "Mis Membresias", href: "/subscripciones", icon: "calendar", permission: "rutinas cliente visualizar" },
           ],
         },
         {
           label: "Gestión de Rutina / Entrenador",
           items: [
-            { label: "Mis Rutinas Asignadas", href: "/inf513/grupo18sc/proyecto2/sis-gym/public/rutinas-usuarios", icon: "calendar-check", permission: "rutinas entrenador visualizar" },
-            // { label: "Seguimientos Cliente", href: "/inf513/grupo18sc/proyecto2/sis-gym/public/seguimientos", icon: "document-text", permission: "reservas cliente visualizar" },
+            { label: "Mis Rutinas Asignadas", href: "/rutinas-usuarios", icon: "calendar-check", permission: "rutinas entrenador visualizar" },
+            // { label: "Seguimientos Cliente", href: "/seguimientos", icon: "document-text", permission: "reservas cliente visualizar" },
           ],
         },
         {
           label: "Reportes",
           items: [
-            // { label: "Seguimientos", href: "/inf513/grupo18sc/proyecto2/sis-gym/public/seguimientos-reportes/reportes", icon: "document-report", permission: "reservas visualizar" },
-            { label: "Pagos", href: "/inf513/grupo18sc/proyecto2/sis-gym/public/pagos-reportes/reportes", icon: "cash", permission: "reporte pagos visualizar" },
+            // { label: "Seguimientos", href: "/seguimientos-reportes/reportes", icon: "document-report", permission: "reservas visualizar" },
+            { label: "Pagos", href: "/pagos-reportes/reportes", icon: "cash", permission: "reporte pagos visualizar" },
           ],
         },
       ]

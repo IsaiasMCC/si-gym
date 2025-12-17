@@ -54,7 +54,7 @@
         </p>
 
         <!-- Volver -->
-        <button @click="$inertia.visit('/inf513/grupo18sc/proyecto2/sis-gym/public/subscripciones')"
+        <button @click="$inertia.visit('/subscripciones')"
           class="mt-4 w-full bg-gray-700 py-2 rounded-lg font-semibold hover:bg-gray-600 text-white">
           Volver
         </button>
@@ -222,7 +222,7 @@ export default {
     },
     pagarEfectivo() {
       this.$inertia.post(
-        `/inf513/grupo18sc/proyecto2/sis-gym/public/plan-pagos/${this.selectedPlan.id}/pagar`,
+        `/plan-pagos/${this.selectedPlan.id}/pagar`,
         {
           metodo_pago: 'efectivo',
           referencia: null
@@ -242,7 +242,7 @@ export default {
       this.showModal = false   // 👈 cerrar modal de pago inmediatamente
 
       axios.post(
-        '/inf513/grupo18sc/proyecto2/sis-gym/public/pagofacil/generar-qr',
+        '/pagofacil/generar-qr',
         {
           pago_id: this.selectedPlan.id,
           monto: this.selectedPlan.monto
@@ -277,7 +277,7 @@ export default {
       this.consultandoEstado = true
 
       axios.post(
-        '/inf513/grupo18sc/proyecto2/sis-gym/public/pagofacil/consultar-estado',
+        '/pagofacil/consultar-estado',
         {
           tnTransaccion: this.qrTransaccionId
         }

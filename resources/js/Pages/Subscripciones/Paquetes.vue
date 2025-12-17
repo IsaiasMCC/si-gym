@@ -90,7 +90,7 @@ export default {
         continuar() {
             const paqueteIds = this.selectedPaquetes.map(p => p.id)
 
-            this.$inertia.post(`/inf513/grupo18sc/proyecto2/sis-gym/public/subscripciones/${this.membresia.id}/resumen`, {
+            this.$inertia.post(`/subscripciones/${this.membresia.id}/resumen`, {
                 paquetes: paqueteIds
             })
         }

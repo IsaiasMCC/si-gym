@@ -10,7 +10,7 @@
         <input v-model="form.search" type="text" class="form-input mt-1 w-full" placeholder="Buscar rutinas..." />
       </search-filter>
 
-      <Link v-if="can('rutinas agregar')" class="btn-indigo" href="/inf513/grupo18sc/proyecto2/sis-gym/public/rutinas/create">Crear Rutina</Link>
+      <Link v-if="can('rutinas agregar')" class="btn-indigo" href="/rutinas/create">Crear Rutina</Link>
     </div>
 
     <div class="rounded-md shadow overflow-x-auto"
@@ -30,13 +30,13 @@
             @mouseover="hover = r.id" @mouseleave="hover = null"
             :class="hover === r.id ? 'bg-[var(--color-hover)]' : ''">
             <td class="px-6 py-4">
-              <Link :href="`/inf513/grupo18sc/proyecto2/sis-gym/public/rutinas/${r.id}/edit`">{{ r.nombre }}</Link>
+              <Link :href="`/rutinas/${r.id}/edit`">{{ r.nombre }}</Link>
             </td>
             <td class="px-6 py-4">{{ r.nivel }}</td>
             <td class="px-6 py-4">{{ r.objetivo }}</td>
             <td class="px-6 py-4">{{ r.entrenador ? r.entrenador.nombres + ' ' + r.entrenador.apellidos : '-' }}</td>
             <td class="px-4 py-4 w-px" v-if="canAny">
-              <Link :href="`/inf513/grupo18sc/proyecto2/sis-gym/public/rutinas/${r.id}/edit`">
+              <Link :href="`/rutinas/${r.id}/edit`">
               <icon name="cheveron-right" class="block w-6 h-6 fill-gray-400" />
               </Link>
             </td>
@@ -71,7 +71,7 @@ export default {
   props: { filters: Object, rutinas: Object },
   data() { return { form: { search: this.filters.search }, hover: null } },
   watch: {
-    form: { deep: true, handler: throttle(function () { this.$inertia.get('/inf513/grupo18sc/proyecto2/sis-gym/public/rutinas', pickBy(this.form), { preserveState: true }) }, 150) }
+    form: { deep: true, handler: throttle(function () { this.$inertia.get('/rutinas', pickBy(this.form), { preserveState: true }) }, 150) }
   },
   methods: { reset() { this.form = mapValues(this.form, () => null) } },
   setup() {

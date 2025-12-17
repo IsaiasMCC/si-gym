@@ -27,7 +27,7 @@
 
                 </div>
                 <div class="text-center">
-                    <Link href="/inf513/grupo18sc/proyecto2/sis-gym/public/login" class="text-sm text-indigo-600 hover:underline">
+                    <Link href="/login" class="text-sm text-indigo-600 hover:underline">
                         ¿Ya tienes una cuenta? Inicia sesión aquí
                     </Link>
                 </div>
@@ -73,7 +73,7 @@ export default {
 
     methods: {
         register() {
-            this.form.post('/inf513/grupo18sc/proyecto2/sis-gym/public/register')
+            this.form.post('/register')
         },
     },
 }

@@ -4,7 +4,7 @@
     <Head title="Editar Seguimiento" />
 
     <h1 class="mb-8 text-3xl font-bold">
-      <Link class="text-indigo-400" :href="`/inf513/grupo18sc/proyecto2/sis-gym/public/seguimientos/${rutinaUsuario.id}`">Seguimientos</Link> /
+      <Link class="text-indigo-400" :href="`/seguimientos/${rutinaUsuario.id}`">Seguimientos</Link> /
       Editar
     </h1>
     <div class="mb-6 p-6 max-w-3xl rounded-md shadow overflow-hidden"
@@ -69,11 +69,11 @@ export default {
   },
   methods: {
     update() {
-      this.form.put(`/inf513/grupo18sc/proyecto2/sis-gym/public/seguimientos/${this.seguimiento.id}`)
+      this.form.put(`/seguimientos/${this.seguimiento.id}`)
     },
     destroy() {
       if (confirm('¿Eliminar seguimiento?'))
-        this.$inertia.delete(`/inf513/grupo18sc/proyecto2/sis-gym/public/seguimientos/${this.seguimiento.id}`)
+        this.$inertia.delete(`/seguimientos/${this.seguimiento.id}`)
     },
   },
   setup() {

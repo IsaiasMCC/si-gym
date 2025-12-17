@@ -18,7 +18,7 @@
           </label>
         </div>
         <div class="text-center mt-4">
-          <Link href="/inf513/grupo18sc/proyecto2/sis-gym/public/register" class="text-sm text-indigo-600 hover:underline">
+          <Link href="/register" class="text-sm text-indigo-600 hover:underline">
             ¿No tienes una cuenta? Regístrate aquí
           </Link>
         </div>
@@ -56,7 +56,7 @@ export default {
   },
   methods: {
     login() {
-      this.form.post('/inf513/grupo18sc/proyecto2/sis-gym/public/login')
+      this.form.post('/login')
     },
   },
 }

@@ -3,7 +3,7 @@
 
     <Head :title="form.nombre" />
     <h1 class="mb-8 text-3xl font-bold">
-      <Link class="text-indigo-400 hover:text-indigo-600" href="/inf513/grupo18sc/proyecto2/sis-gym/public/membresias">
+      <Link class="text-indigo-400 hover:text-indigo-600" href="/membresias">
       Membresías</Link>
       <span class="text-indigo-400 font-medium">/</span> Editar
       {{ form.nombre }}
@@ -65,8 +65,8 @@ export default {
     }
   },
   methods: {
-    update() { this.form.put(`/inf513/grupo18sc/proyecto2/sis-gym/public/membresias/${this.membresia.id}`) },
-    destroy() { if (confirm('¿Seguro que quieres eliminar esta membresía?')) this.$inertia.delete(`/inf513/grupo18sc/proyecto2/sis-gym/public/membresias/${this.membresia.id}`) },
+    update() { this.form.put(`/membresias/${this.membresia.id}`) },
+    destroy() { if (confirm('¿Seguro que quieres eliminar esta membresía?')) this.$inertia.delete(`/membresias/${this.membresia.id}`) },
   },
   setup() {
     const { can } = useCan()

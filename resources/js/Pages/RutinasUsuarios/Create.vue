@@ -4,7 +4,7 @@
     <Head title="Asignar Rutina" />
 
     <h1 class="mb-8 text-3xl font-bold">
-      <Link class="text-indigo-400" href="/inf513/grupo18sc/proyecto2/sis-gym/public/rutinas-usuarios">
+      <Link class="text-indigo-400" href="/rutinas-usuarios">
       Rutinas
       </Link> / Asignar
     </h1>
@@ -64,7 +64,7 @@ export default {
   },
   methods: {
     store() {
-      this.form.post('/inf513/grupo18sc/proyecto2/sis-gym/public/rutinas-usuarios')
+      this.form.post('/rutinas-usuarios')
     },
   },
 }

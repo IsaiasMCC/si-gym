@@ -6,9 +6,9 @@
     <div class="flex justify-between mb-6">
       <h1 class="text-3xl font-bold">Seguimientos</h1>
       <div>
-        <Link class="btn-indigo bg-red-500 me-2" :href="`/inf513/grupo18sc/proyecto2/sis-gym/public/rutinas-usuarios`">
+        <Link class="btn-indigo bg-red-500 me-2" :href="`/rutinas-usuarios`">
         volver </Link>
-        <Link v-if="can('seguimiento rutina agregar')" class="btn-indigo" :href="`/inf513/grupo18sc/proyecto2/sis-gym/public/seguimientos/create/${id}`">Nuevo
+        <Link v-if="can('seguimiento rutina agregar')" class="btn-indigo" :href="`/seguimientos/create/${id}`">Nuevo
         Seguimiento</Link>
       </div>
     </div>
@@ -33,7 +33,7 @@
             <td class="px-6 py-4">{{ s.imc ?? '-' }}</td>
             <td class="px-6 py-4">{{ s.observaciones ?? '-' }}</td>
             <td class="px-6 py-4" v-if="canAny">
-              <Link :href="`/inf513/grupo18sc/proyecto2/sis-gym/public/seguimientos/${s.id}/edit`">Editar</Link>
+              <Link :href="`/seguimientos/${s.id}/edit`">Editar</Link>
             </td>
           </tr>
         </tbody>

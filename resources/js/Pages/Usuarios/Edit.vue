@@ -3,7 +3,7 @@
 
     <Head :title="`${form.nombres} ${form.apellidos}`" />
     <h1 class="mb-8 text-3xl font-bold" :style="{ color: 'var(--color-text)' }">
-      <Link class="text-indigo-400 hover:text-indigo-600" href="/inf513/grupo18sc/proyecto2/sis-gym/public/usuarios">
+      <Link class="text-indigo-400 hover:text-indigo-600" href="/usuarios">
       Usuarios</Link>
       <span class="text-indigo-400 font-medium">/</span> Editar
       {{ form.nombres }} {{ form.apellidos }}
@@ -73,8 +73,8 @@ export default {
     }
   },
   methods: {
-    update() { this.form.put(`/inf513/grupo18sc/proyecto2/sis-gym/public/usuarios/${this.user.id}`) },
-    destroy() { if (confirm('¿Seguro que quieres eliminar este usuario?')) this.$inertia.delete(`/inf513/grupo18sc/proyecto2/sis-gym/public/usuarios/${this.user.id}`) },
+    update() { this.form.put(`/usuarios/${this.user.id}`) },
+    destroy() { if (confirm('¿Seguro que quieres eliminar este usuario?')) this.$inertia.delete(`/usuarios/${this.user.id}`) },
   },
   setup() {
     const { can } = useCan()
