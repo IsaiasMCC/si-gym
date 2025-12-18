@@ -54,6 +54,9 @@ Route::get('/', [DashboardController::class, 'index'])
     ->name('dashboard')
     ->middleware('auth');
 
+Route::head('/', [DashboardController::class, 'index'])
+    ->middleware('auth');
+
 Route::prefix('/seguimientos-reportes')->group(function () {
     Route::get('reportes', [SeguimientoReporteController::class, 'index'])->name('seguimientos.reportes');
     Route::get('reportes/export', [SeguimientoReporteController::class, 'export'])->name('seguimientos.reportes.export');
