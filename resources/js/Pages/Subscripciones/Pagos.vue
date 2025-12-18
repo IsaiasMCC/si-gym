@@ -54,7 +54,7 @@
         </p>
 
         <!-- Volver -->
-        <button @click="$inertia.visit('/subscripciones')"
+        <button @click="$inertia.visit(route('subscripciones.index'))"
           class="mt-4 w-full bg-gray-700 py-2 rounded-lg font-semibold hover:bg-gray-600 text-white">
           Volver
         </button>
@@ -295,6 +295,8 @@ export default {
             this.qrImage = null
             this.qrTransaccionId = null
             this.estadoPago = null
+            this.$inertia.reload()
+
           }
         })
         .catch(error => {

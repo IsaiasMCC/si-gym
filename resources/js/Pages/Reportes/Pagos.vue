@@ -30,6 +30,7 @@
             <th class="px-6 py-4">Usuario</th>
             <th class="px-6 py-4">Tipo Pago</th>
             <th class="px-6 py-4">Metodo Pago</th>
+            <th class="px-6 py-4">Transacción</th>
             <th class="px-6 py-4">Monto (Bs)</th>
             <th class="px-6 py-4">Saldo (Bs)</th>
             <th class="px-6 py-4">Estado</th>
@@ -44,6 +45,7 @@
             <td class="px-6 py-4">{{ pago.plan_pago.subscripcion.usuario.nombres }} {{ pago.plan_pago.subscripcion.usuario.apellidos }}</td>
             <td class="px-6 py-4">{{ pago.plan_pago.tipo_pago }}</td>
             <td class="px-6 py-4">{{ pago.metodo_pago }}</td>
+            <td class="px-6 py-4">{{ pago.referencia }}</td>
             <td class="px-6 py-4">{{ pago.monto }}</td>
             <td class="px-6 py-4">{{ pago.plan_pago.saldo }}</td>
             <td class="px-6 py-4">{{ pago.estado }}</td>
