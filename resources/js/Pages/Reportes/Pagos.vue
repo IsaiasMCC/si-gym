@@ -36,6 +36,7 @@
             <th class="px-6 py-4">Estado</th>
             <th class="px-6 py-4">Fecha Limite</th>
             <th class="px-6 py-4">Fecha Pago</th>
+            <th class="px-6 py-4">Hora</th>
           </tr>
         </thead>
         <tbody>
@@ -51,6 +52,8 @@
             <td class="px-6 py-4">{{ pago.estado }}</td>
             <td class="px-6 py-4">{{ pago.plan_pago.fecha_vencimiento }}</td>
             <td class="px-6 py-4">{{ pago.fecha_pago }}</td>
+            <td class="px-6 py-4">{{ new Date(pago.created_at).toLocaleTimeString() }}</td>
+
           </tr>
           <tr v-if="pagos.data.length === 0">
             <td colspan="8" class="px-6 py-4 text-center text-gray-500">No hay registros</td>
