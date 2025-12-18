@@ -50,12 +50,10 @@ Route::post('/register', [AuthenticatedSessionController::class, 'register'])
 
 // Dashboard
 
-Route::get('/', [DashboardController::class, 'index'])
+Route::match(['get', 'head'], '/', [DashboardController::class, 'index'])
     ->name('dashboard')
     ->middleware('auth');
 
-Route::head('/', [DashboardController::class, 'index'])
-    ->middleware('auth');
 
 Route::prefix('/seguimientos-reportes')->group(function () {
     Route::get('reportes', [SeguimientoReporteController::class, 'index'])->name('seguimientos.reportes');
