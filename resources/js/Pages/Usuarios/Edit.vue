@@ -3,7 +3,7 @@
 
     <Head :title="`${form.nombres} ${form.apellidos}`" />
     <h1 class="mb-8 text-3xl font-bold" :style="{ color: 'var(--color-text)' }">
-      <Link class="text-indigo-400 hover:text-indigo-600" href="/usuarios">
+      <Link class="text-indigo-400 hover:text-indigo-600" :href="route('usuarios.index')">
       Usuarios</Link>
       <span class="text-indigo-400 font-medium">/</span> Editar
       {{ form.nombres }} {{ form.apellidos }}
@@ -70,11 +70,12 @@ export default {
         role_id: this.user.role_id,
         estado: this.user.estado,
       }),
+      route,
     }
   },
   methods: {
-    update() { this.form.put(`/usuarios/${this.user.id}`) },
-    destroy() { if (confirm('¿Seguro que quieres eliminar este usuario?')) this.$inertia.delete(`/usuarios/${this.user.id}`) },
+    update() { this.form.put(`${route('usuarios.update', this.user.id)}`) },
+    destroy() { if (confirm('¿Seguro que quieres eliminar este usuario?')) this.$inertia.delete(`${route('usuarios.destroy', this.user.id)}`) },
   },
   setup() {
     const { can } = useCan()

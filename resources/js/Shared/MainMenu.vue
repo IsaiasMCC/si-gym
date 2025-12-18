@@ -61,28 +61,28 @@ export default {
         {
           label: "Gestión de Usuarios",
           items: [
-            { label: "Roles", href: "/roles", icon: "shield-check", permission: "roles visualizar" },
-            { label: "Usuarios", href: "/usuarios", icon: "users", permission: "usuarios visualizar" },
+            { label: "Roles", href: route('roles.index'), icon: "shield-check", permission: "roles visualizar" },
+            { label: "Usuarios", href: route('usuarios.index'), icon: "users", permission: "usuarios visualizar" },
           ],
         },
         {
           label: "Gestión de Membresias y Paquetes",
           items: [
-            { label: "Membresias", href: "/membresias", icon: "credit-card", permission: "membresias visualizar" },
-            { label: "Paquetes", href: "/paquetes", icon: "archive", permission: "paquetes visualizar" },
-            { label: "Rutinas", href: "/rutinas", icon: "clock", permission: "rutinas visualizar" },
+            { label: "Membresias", href: route('membresias.index'), icon: "credit-card", permission: "membresias visualizar" },
+            { label: "Paquetes", href: route('paquetes.index'), icon: "archive", permission: "paquetes visualizar" },
+            { label: "Rutinas", href: route('rutinas.index'), icon: "clock", permission: "rutinas visualizar" },
           ],
         },
         {
           label: "Gestión de Subscripciones / Clientes",
           items: [
-            { label: "Mis Membresias", href: "/subscripciones", icon: "calendar", permission: "rutinas cliente visualizar" },
+            { label: "Mis Membresias", href: route('subscripciones.index'), icon: "calendar", permission: "rutinas cliente visualizar" },
           ],
         },
         {
           label: "Gestión de Rutina / Entrenador",
           items: [
-            { label: "Mis Rutinas Asignadas", href: "/rutinas-usuarios", icon: "calendar-check", permission: "rutinas entrenador visualizar" },
+            { label: "Mis Rutinas Asignadas", href: route('rutinas-usuarios.index'), icon: "calendar-check", permission: "rutinas entrenador visualizar" },
             // { label: "Seguimientos Cliente", href: "/seguimientos", icon: "document-text", permission: "reservas cliente visualizar" },
           ],
         },
@@ -90,12 +90,11 @@ export default {
           label: "Reportes",
           items: [
             // { label: "Seguimientos", href: "/seguimientos-reportes/reportes", icon: "document-report", permission: "reservas visualizar" },
-            { label: "Pagos", href: "/pagos-reportes/reportes", icon: "cash", permission: "reporte pagos visualizar" },
+            { label: "Pagos", href: route('pagos.reportes'), icon: "cash", permission: "reporte pagos visualizar" },
           ],
         },
-      ]
-
-
+      ],
+      route,
     }
   },
   computed: {

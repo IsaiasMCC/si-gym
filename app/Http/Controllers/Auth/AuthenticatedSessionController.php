@@ -41,7 +41,7 @@ class AuthenticatedSessionController extends Controller
         if ($user->role_id === 3) {
             return redirect()->route('subscripciones.index');
         } else {
-            return redirect('/');
+            return redirect()->route('dashboard');
         }
     }
 
@@ -57,7 +57,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect()->route('dashboard');
     }
 
     public function register(Request $request)
@@ -82,6 +82,6 @@ class AuthenticatedSessionController extends Controller
 
         Auth::login($user);
 
-        return redirect('/subscripciones');
+        return redirect()->route('subscripciones.index');
     }
 }

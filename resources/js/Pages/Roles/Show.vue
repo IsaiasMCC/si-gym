@@ -4,7 +4,7 @@
     <Head title="Permisos del Rol" />
 
     <h1 class="mb-8 text-3xl font-bold" :style="{ color: 'var(--color-text)' }">
-      <Link class="text-indigo-400 hover:text-indigo-600" href="/roles">Roles</Link>
+      <Link class="text-indigo-400 hover:text-indigo-600" :href="route('roles.index')">Roles</Link>
       <span class="text-indigo-400 font-medium"> / </span>
       {{ form.name }}
     </h1>
@@ -58,7 +58,7 @@
       <!-- Botones -->
       <div class="flex items-center p-4 border-t border-gray-100">
         <Link 
-          href="/roles" 
+          :href="route('roles.index')" 
           class="px-4 py-2 rounded hover:opacity-90"
           :style="{ backgroundColor: '#ef4444', color: 'white' }"
         >
@@ -91,6 +91,7 @@ export default {
       form: { name: this.role.name },
       selectedPermissions: this.role.permissions ? this.role.permissions.map(p => p.name) : [],
       selectAll: false,
+      route,
     }
   },
   watch: {
@@ -108,7 +109,7 @@ export default {
         : []
     },
     guardarPermisos() {
-      this.$inertia.patch(`/roles/permisos/${this.role.id}`, {
+      this.$inertia.patch(route('roles.update.permissions', this.role.id), {
         permissions: this.selectedPermissions,
       })
     },

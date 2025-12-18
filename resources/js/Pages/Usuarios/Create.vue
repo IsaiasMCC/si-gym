@@ -2,7 +2,7 @@
   <div :style="{ color: 'var(--color-text)', backgroundColor: 'var(--color-bg)' }" class="min-h-screen p-6">
     <Head title="Crear Usuario" />
     <h1 class="mb-8 text-3xl font-bold" :style="{ color: 'var(--color-text)' }">
-      <Link class="text-indigo-400 hover:text-indigo-600" href="/usuarios">Usuarios</Link>
+      <Link class="text-indigo-400 hover:text-indigo-600" :href="route('usuarios.index')">Usuarios</Link>
       <span class="text-indigo-400 font-medium">/</span> Crear
     </h1>
 
@@ -55,10 +55,11 @@ export default {
         role_id: null,
         estado: true
       }),
+      route,
     }
   },
   methods: {
-    store() { this.form.post('/usuarios') },
+    store() { this.form.post(route('usuarios.store')) },
   },
 }
 </script>

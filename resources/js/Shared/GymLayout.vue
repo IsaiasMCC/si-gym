@@ -10,9 +10,9 @@
 
         <!-- Nav -->
         <nav class="flex items-center space-x-6">
-          <Link href="/subscripciones"
+          <Link :href="route('subscripciones.index')"
             class="hover:text-indigo-300 transition font-medium">Inicio</Link>
-          <Link href="/catalogos"
+          <Link :href="route('subscripciones.catalogo')"
             class="hover:text-indigo-300 transition font-medium">Membresias</Link>
           <a href="#clases" class="hover:text-indigo-300 transition font-medium">Paquetes</a>
 
@@ -33,7 +33,7 @@
             </span>
 
             <!-- Botón auth -->
-            <Link href="/logout" method="delete" as="button"
+            <Link :href="route('logout')" method="delete" as="button"
               class="bg-red-500 px-3 py-1 rounded text-sm hover:bg-red-400 transition text-white shadow-sm">
             Cerrar sesión
             </Link>
@@ -41,7 +41,7 @@
 
           <!-- Si no está logueado -->
           <div v-else>
-            <Link href="/login"
+            <Link :href="route('login')"
               class="bg-indigo-500 px-3 py-1 rounded text-sm hover:bg-indigo-400 transition text-white shadow-sm">
               Iniciar sesión
             </Link>
@@ -98,7 +98,12 @@ export default {
 
     // solo devolvemos todo el prop auth
     return { themeClass, headerClass, footerClass, auth: auth };
-  }
+  },
+  data() {
+    return {
+      route,
+    };
+  },
 
 }
 </script>

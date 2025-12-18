@@ -89,7 +89,7 @@ export default {
     form: {
       deep: true,
       handler: throttle(function() {
-        this.$inertia.get('/pagos-reportes/reportes/', pickBy(this.form), { preserveState: true })
+        this.$inertia.get(route('pagos.reportes'), pickBy(this.form), { preserveState: true })
       }, 150),
     }
   },
@@ -99,7 +99,7 @@ export default {
     },
     exportar(tipo) {
       const query = pickBy(this.form)
-      window.open(`/pagos-reportes/reportes/export?tipo=${tipo}&${new URLSearchParams(query)}`, '_blank')
+      window.open(`${route('pagos.reportes.export')}?tipo=${tipo}&${new URLSearchParams(query)}`, '_blank')
     }
   }
 }

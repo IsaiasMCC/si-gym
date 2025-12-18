@@ -10,7 +10,7 @@
         <input v-model="form.search" type="text" class="form-input mt-1 w-full" placeholder="Buscar membresías..." />
       </search-filter>
 
-      <Link v-if="can('membresias agregar')" class="btn-indigo" href="/membresias/create">
+      <Link v-if="can('membresias agregar')" class="btn-indigo" :href="route('membresias.create')">
       <span>Crear</span>
       <span class="hidden md:inline">&nbsp;Membresía</span>
       </Link>
@@ -34,14 +34,14 @@
             @mouseover="hover = m.id" @mouseleave="hover = null"
             :class="hover === m.id ? 'bg-[var(--color-hover)]' : ''">
             <td class="px-6 py-4">
-              <Link :href="`/membresias/${m.id}/edit`">{{ m.nombre }}</Link>
+              <Link :href="route('membresias.edit', m.id)">{{ m.nombre }}</Link>
             </td>
             <td class="px-6 py-4">{{ m.duracion_dias }}</td>
             <td class="px-6 py-4">{{ m.precio_base }}</td>
             <td class="px-6 py-4">{{ m.descripcion }}</td>
             <td class="px-6 py-4">{{ m.estado }}</td>
             <td class="px-4 py-4 w-px" v-if="canAny">
-              <Link :href="`/membresias/${m.id}/edit`">
+              <Link :href="route('membresias.edit', m.id)">
               <icon name="cheveron-right" class="block w-6 h-6 fill-gray-400" />
               </Link>
             </td>
@@ -74,7 +74,7 @@ export default {
   layout: Layout,
   props: { filters: Object, membresias: Object },
   data() {
-    return { form: { search: this.filters.search }, hover: null }
+    return { form: { search: this.filters.search }, hover: null, route }
   },
   watch: {
     form: {

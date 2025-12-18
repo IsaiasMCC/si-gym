@@ -4,7 +4,7 @@
     <Head title="Create Role" />
     <h1 class="mb-8 text-3xl font-bold" :style="{ color: 'var(--color-text)' }">
       <Link class="hover:underline" :style="{ color: 'var(--color-primary)' }"
-        href="/roles">Roles</Link>
+        :href="route('roles.index')">Roles</Link>
       <span class="font-medium mx-1">/</span> Create
     </h1>
 
@@ -60,11 +60,12 @@ export default {
         description: '',
         estado: true,
       }),
+      route,
     }
   },
   methods: {
     store() {
-      this.form.post('/roles')
+      this.form.post(route('roles.store'))
     },
   },
   setup() {

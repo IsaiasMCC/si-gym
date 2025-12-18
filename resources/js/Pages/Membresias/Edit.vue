@@ -3,7 +3,7 @@
 
     <Head :title="form.nombre" />
     <h1 class="mb-8 text-3xl font-bold">
-      <Link class="text-indigo-400 hover:text-indigo-600" href="/membresias">
+      <Link class="text-indigo-400 hover:text-indigo-600" :href="route('membresias.index')">
       Membresías</Link>
       <span class="text-indigo-400 font-medium">/</span> Editar
       {{ form.nombre }}
@@ -62,11 +62,12 @@ export default {
         descripcion: this.membresia.descripcion,
         estado: this.membresia.estado
       }),
+      route,
     }
   },
   methods: {
-    update() { this.form.put(`/membresias/${this.membresia.id}`) },
-    destroy() { if (confirm('¿Seguro que quieres eliminar esta membresía?')) this.$inertia.delete(`/membresias/${this.membresia.id}`) },
+    update() { this.form.put(route('membresias.update', this.membresia.id)) },
+    destroy() { if (confirm('¿Seguro que quieres eliminar esta membresía?')) this.$inertia.delete(route('membresias.destroy', this.membresia.id)) },
   },
   setup() {
     const { can } = useCan()

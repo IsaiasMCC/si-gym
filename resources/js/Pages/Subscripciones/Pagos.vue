@@ -185,10 +185,10 @@ export default {
       qrImage: null,
       qrTransaccionId: null,
       selectedPlan: null,
-      metodoPago: ''
+      metodoPago: '',
+      route,
     }
-  }
-  ,
+  },
 
 
   methods: {
@@ -222,7 +222,7 @@ export default {
     },
     pagarEfectivo() {
       this.$inertia.post(
-        `/plan-pagos/${this.selectedPlan.id}/pagar`,
+        route('plan-pagos.pagar', this.selectedPlan.id),
         {
           metodo_pago: 'efectivo',
           referencia: null
@@ -242,7 +242,7 @@ export default {
       this.showModal = false   // 👈 cerrar modal de pago inmediatamente
 
       axios.post(
-        '/pagofacil/generar-qr',
+        route('pagofacil.generarQR'),
         {
           pago_id: this.selectedPlan.id,
           monto: this.selectedPlan.monto
@@ -277,7 +277,7 @@ export default {
       this.consultandoEstado = true
 
       axios.post(
-        '/pagofacil/consultar-estado',
+        route('pagofacil.consultarEstado'),
         {
           tnTransaccion: this.qrTransaccionId
         }

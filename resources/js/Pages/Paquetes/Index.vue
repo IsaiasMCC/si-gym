@@ -10,7 +10,7 @@
         <input v-model="form.search" type="text" class="form-input mt-1 w-full" placeholder="Buscar paquetes..." />
       </search-filter>
 
-      <Link v-if="can('paquetes agregar')" class="btn-indigo" href="/paquetes/create">Crear Paquete</Link>
+      <Link v-if="can('paquetes agregar')" class="btn-indigo" :href="route('paquetes.create')">Crear Paquete</Link>
     </div>
 
     <div class="rounded-md shadow overflow-x-auto"
@@ -30,13 +30,13 @@
             @mouseover="hover = p.id" @mouseleave="hover = null"
             :class="hover === p.id ? 'bg-[var(--color-hover)]' : ''">
             <td class="px-6 py-4">
-              <Link :href="`/paquetes/${p.id}/edit`">{{ p.nombre }}</Link>
+              <Link :href="route('paquetes.edit', p.id)">{{ p.nombre }}</Link>
             </td>
             <td class="px-6 py-4">{{ p.membresia?.nombre ?? '-' }}</td>
             <td class="px-6 py-4">{{ p.precio_adicional }}</td>
             <td class="px-6 py-4">{{ p.estado }}</td>
             <td class="px-4 py-4 w-px" v-if="canAny">
-              <Link :href="`/paquetes/${p.id}/edit`">
+              <Link :href="route('paquetes.edit', p.id)">
               <icon name="cheveron-right" class="block w-6 h-6 fill-gray-400" />
               </Link>
             </td>
@@ -68,9 +68,9 @@ export default {
   components: { Head, Link, Pagination, SearchFilter, Icon },
   layout: Layout,
   props: { filters: Object, paquetes: Object },
-  data() { return { form: { search: this.filters.search }, hover: null } },
+  data() { return { form: { search: this.filters.search }, hover: null, route } },
   watch: {
-    form: { deep: true, handler: throttle(function () { this.$inertia.get('/paquetes', pickBy(this.form), { preserveState: true }) }, 150) }
+    form: { deep: true, handler: throttle(function () { this.$inertia.get(route('paquetes.index'), pickBy(this.form), { preserveState: true }) }, 150) }
   },
   methods: { reset() { this.form = mapValues(this.form, () => null) } },
   setup() {

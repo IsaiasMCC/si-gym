@@ -3,7 +3,7 @@
 
     <Head :title="form.nombre" />
     <h1 class="mb-8 text-3xl font-bold">
-      <Link class="text-indigo-400 hover:text-indigo-600" href="/paquetes">
+      <Link class="text-indigo-400 hover:text-indigo-600" :href="route('paquetes.index')">
       Paquetes</Link>
       <span class="text-indigo-400 font-medium">/</span> Editar
       {{ form.nombre }}
@@ -63,11 +63,12 @@ export default {
         estado: this.paquete.estado,
         membresia_id: this.paquete.membresia_id
       }),
+      route,
     }
   },
   methods: {
-    update() { this.form.put(`/paquetes/${this.paquete.id}`) },
-    destroy() { if (confirm('¿Seguro que quieres eliminar este paquete?')) this.$inertia.delete(`/paquetes/${this.paquete.id}`) },
+    update() { this.form.put(route('paquetes.update', this.paquete.id)) },
+    destroy() { if (confirm('¿Seguro que quieres eliminar este paquete?')) this.$inertia.delete(route('paquetes.destroy', this.paquete.id)) },
   },
   setup() {
     const { can } = useCan()

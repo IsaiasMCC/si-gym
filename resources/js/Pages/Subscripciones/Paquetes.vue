@@ -69,7 +69,8 @@ export default {
     },
     data() {
         return {
-            selectedPaquetes: [] // Array para varios paquetes
+            selectedPaquetes: [], // Array para varios paquetes
+            route,
         }
     },
     methods: {
@@ -90,7 +91,7 @@ export default {
         continuar() {
             const paqueteIds = this.selectedPaquetes.map(p => p.id)
 
-            this.$inertia.post(`/subscripciones/${this.membresia.id}/resumen`, {
+            this.$inertia.post(route('subscripciones.resumen', this.membresia.id), {
                 paquetes: paqueteIds
             })
         }

@@ -10,7 +10,7 @@
         <input v-model="form.search" type="text" class="form-input mt-1 w-full" placeholder="Buscar rutinas..." />
       </search-filter>
 
-      <Link v-if="can('rutinas agregar')" class="btn-indigo" href="/rutinas/create">Crear Rutina</Link>
+      <Link v-if="can('rutinas agregar')" class="btn-indigo" :href="route('rutinas.create')">Crear Rutina</Link>
     </div>
 
     <div class="rounded-md shadow overflow-x-auto"
@@ -69,9 +69,9 @@ export default {
   components: { Head, Link, Pagination, SearchFilter, Icon },
   layout: Layout,
   props: { filters: Object, rutinas: Object },
-  data() { return { form: { search: this.filters.search }, hover: null } },
+  data() { return { form: { search: this.filters.search }, hover: null, route } },
   watch: {
-    form: { deep: true, handler: throttle(function () { this.$inertia.get('/rutinas', pickBy(this.form), { preserveState: true }) }, 150) }
+    form: { deep: true, handler: throttle(function () { this.$inertia.get(route('rutinas.index'), pickBy(this.form), { preserveState: true }) }, 150) }
   },
   methods: { reset() { this.form = mapValues(this.form, () => null) } },
   setup() {

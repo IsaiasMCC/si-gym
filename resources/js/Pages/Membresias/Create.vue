@@ -2,7 +2,7 @@
   <div class="min-h-screen p-6" :style="{ color: 'var(--color-text)', backgroundColor: 'var(--color-bg)' }">
     <Head title="Crear Membresía" />
     <h1 class="mb-8 text-3xl font-bold">
-      <Link class="text-indigo-400 hover:text-indigo-600" href="/membresias">Membresías</Link>
+      <Link class="text-indigo-400 hover:text-indigo-600" :href="route('membresias.index')">Membresías</Link>
       <span class="text-indigo-400 font-medium">/</span> Crear
     </h1>
 
@@ -47,10 +47,11 @@ export default {
         descripcion: '',
         estado: 'activo'
       }),
+      route,
     }
   },
   methods: {
-    store() { this.form.post('/membresias') },
+    store() { this.form.post(route('membresias.store')) },
   },
 }
 </script>

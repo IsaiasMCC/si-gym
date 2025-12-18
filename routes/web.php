@@ -70,8 +70,8 @@ Route::patch('/roles/permisos/{id}', [RoleController::class, 'updatePermissions'
 // Route::get('/contratar-servicios', [ReservaController::class, 'catalogo'])->name('reservas.catalogo');
 Route::resource('usuarios', UsuarioController::class);
 
-Route::post('/pagofacil/generar-qr', [PagoFacilController::class, 'generarQR']);
-Route::post('/pagofacil/consultar-estado', [PagoFacilController::class, 'consultarEstado']);
+Route::post('/pagofacil/generar-qr', [PagoFacilController::class, 'generarQR'])->name('pagofacil.generarQR');
+Route::post('/pagofacil/consultar-estado', [PagoFacilController::class, 'consultarEstado'])->name('pagofacil.consultarEstado');
 
 Route::resource('membresias', MembresiaController::class);
 Route::resource('paquetes', PaqueteController::class);

@@ -6,9 +6,8 @@
     <div class="flex justify-between mb-6">
       <h1 class="text-3xl font-bold">Seguimientos</h1>
       <div>
-        <Link class="btn-indigo bg-red-500 me-2" :href="`/rutinas-usuarios`">
-        volver </Link>
-        <Link v-if="can('seguimiento rutina agregar')" class="btn-indigo" :href="`/seguimientos/create/${id}`">Nuevo
+        <Link class="btn-indigo bg-red-500 me-2" :href="route('rutinas-usuarios.index')">Volver</Link>
+        <Link v-if="can('seguimiento rutina agregar')" class="btn-indigo" :href="route('seguimientos.create', id)">Nuevo
         Seguimiento</Link>
       </div>
     </div>
@@ -33,7 +32,7 @@
             <td class="px-6 py-4">{{ s.imc ?? '-' }}</td>
             <td class="px-6 py-4">{{ s.observaciones ?? '-' }}</td>
             <td class="px-6 py-4" v-if="canAny">
-              <Link :href="`/seguimientos/${s.id}/edit`">Editar</Link>
+              <Link :href="route('seguimientos.edit', s.id)">Editar</Link>
             </td>
           </tr>
         </tbody>
@@ -64,5 +63,10 @@ export default {
       canAny,
     }
   },
+  data() {
+    return {
+      route,
+    }
+  }
 }
 </script>

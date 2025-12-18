@@ -14,11 +14,7 @@
       <div v-if="paquetes.length" class="mb-6">
         <h3 class="text-xl font-semibold mb-3">Paquetes adicionales</h3>
         <ul class="space-y-3">
-          <li
-            v-for="p in paquetes"
-            :key="p.id"
-            class="flex justify-between items-center p-3 bg-gray-800 rounded-lg"
-          >
+          <li v-for="p in paquetes" :key="p.id" class="flex justify-between items-center p-3 bg-gray-800 rounded-lg">
             <span>{{ p.nombre }} - <small class="text-gray-400">{{ p.descripcion }}</small></span>
             <span class="text-indigo-400 font-bold">+ Bs {{ p.precio_adicional }}</span>
           </li>
@@ -48,11 +44,9 @@
 
       <!-- Confirmar Pago -->
       <div class="text-center">
-        <button
-          @click="confirmarPago"
+        <button @click="confirmarPago"
           class="bg-yellow-400 text-gray-900 px-6 py-3 rounded-xl font-semibold hover:bg-yellow-300 transition"
-          :disabled="!tipo_pago"
-        >
+          :disabled="!tipo_pago">
           Confirmar y Pagar
         </button>
       </div>
@@ -72,7 +66,8 @@ export default {
   },
   data() {
     return {
-      tipo_pago: null // Contado o crédito
+      tipo_pago: null, // Contado o crédito
+      route,
     }
   },
   methods: {
@@ -80,7 +75,7 @@ export default {
       if (!this.tipo_pago) return
 
       const paqueteIds = this.paquetes.map(p => p.id)
-      this.$inertia.post(`/subscripciones/${this.membresia.id}/confirmar`, {
+      this.$inertia.post(route('subscripciones.confirmar', this.membresia.id), {
         paquetes: paqueteIds,
         tipo_pago: this.tipo_pago
       })

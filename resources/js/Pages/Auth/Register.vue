@@ -27,7 +27,7 @@
 
                 </div>
                 <div class="text-center">
-                    <Link href="/login" class="text-sm text-indigo-600 hover:underline">
+                    <Link :href="route('login')" class="text-sm text-indigo-600 hover:underline">
                         ¿Ya tienes una cuenta? Inicia sesión aquí
                     </Link>
                 </div>
@@ -49,6 +49,7 @@ import Logo from '@/Shared/Logo.vue'
 import TextInput from '@/Shared/TextInput.vue'
 import LoadingButton from '@/Shared/LoadingButton.vue'
 
+
 export default {
     components: {
         Link,
@@ -68,12 +69,13 @@ export default {
                 estado: true,
                 role_id: 2, // 👈 por defecto
             }),
+            route,
         }
     },
 
     methods: {
         register() {
-            this.form.post('/register')
+            this.form.post(route('register'))
         },
     },
 }

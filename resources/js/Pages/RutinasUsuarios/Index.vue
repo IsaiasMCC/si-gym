@@ -6,8 +6,7 @@
     <div class="flex justify-between mb-6">
       <h1 class="text-3xl font-bold">Rutinas Asignadas</h1>
 
-      <Link v-if="can('rutinas entrenador agregar')" class="btn-indigo"
-        href="/rutinas-usuarios/create">
+      <Link v-if="can('rutinas entrenador agregar')" class="btn-indigo" :href="route('rutinas-usuarios.create')">
       Asignar Rutina
       </Link>
     </div>
@@ -35,12 +34,12 @@
             <td class="px-6 py-4">{{ ru.estado }}</td>
             <div v-if="canAny">
               <td class="px-6 py-4" v-if="can('rutinas entrenador editar')">
-                <Link :href="`/rutinas-usuarios/${ru.id}/edit`">
+                <Link :href="`${route('rutinas-usuarios.edit', ru.id)}`">
                 Editar
                 </Link>
               </td>
               <td class="px-6 py-4" v-if="can('seguimiento rutina visualizar')">
-                <Link :href="`/seguimientos/${ru.id}`">
+                <Link :href="`${route('seguimientos.index', ru.id)}`">
                 Ver Seguimiento
                 </Link>
               </td>
@@ -73,6 +72,12 @@ export default {
     return {
       can,
       canAny,
+    }
+  },
+
+  data() {
+    return {
+      route,
     }
   },
 }

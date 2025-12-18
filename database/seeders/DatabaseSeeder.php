@@ -17,7 +17,16 @@ class DatabaseSeeder extends Seeder
         $this->call(PermissionSeeder::class);
         $this->call(RoleSeeder::class);
         $this->call(UsuarioSeeder::class);
-        // $this->call(MetodoPagosSeeder::class);
-        // $this->call(ServicioSeeder::class);
+        // Primero las tablas básicas
+        $this->call(MembresiaSeeder::class);
+
+        // Después los paquetes asociados a las membresías
+        $this->call(PaqueteSeeder::class);
+
+        // Luego las rutinas (con entrenadores ya creados en users)
+        $this->call(RutinasSeeder::class);
+
+        // Finalmente, asignar rutinas a los usuarios
+        $this->call(RutinaUsuariosSeeder::class);
     }
 }

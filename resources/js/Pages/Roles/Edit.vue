@@ -4,7 +4,7 @@
     <Head :title="form.name" />
     <h1 class="mb-8 text-3xl font-bold" :style="{ color: 'var(--color-text)' }">
       <Link class="hover:underline" :style="{ color: 'var(--color-primary)' }"
-        href="/roles">Roles</Link>
+        :href="route('roles.index')">Roles</Link>
       <span class="font-medium mx-1">/</span>
       {{ form.name }}
     </h1>
@@ -70,15 +70,16 @@ export default {
         description: this.role.description,
         estado: this.role.estado,
       }),
+      route,
     }
   },
   methods: {
     update() {
-      this.form.put(`/roles/${this.role.id}`)
+      this.form.put(route('roles.update', this.role.id))
     },
     destroy() {
       if (confirm('Are you sure you want to delete this role?')) {
-        this.$inertia.delete(`/roles/${this.role.id}`)
+        this.$inertia.delete(route('roles.destroy', this.role.id))
       }
     },
 

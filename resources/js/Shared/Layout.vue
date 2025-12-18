@@ -9,8 +9,8 @@
       <div class="md:flex md:shrink-0">
         <div :style="{ backgroundColor: 'var(--color-primary)', color: 'var(--color-text)' }"
           class="flex items-center justify-between px-6 py-4 md:shrink-0 md:justify-center md:w-56">
-          <Link class="mt-1" href="/">
-            <Logo class="fill-white" width="120" height="28" />
+          <Link class="mt-1" :href="route('dashboard')">
+          <Logo class="fill-white" width="120" height="28" />
           </Link>
 
           <!-- MENU MOVIL -->
@@ -59,13 +59,16 @@
                   </svg>
                 </button>
                 <div v-show="menus.theme" class="absolute bg-white shadow rounded mt-1 w-36 z-20">
-                  <button @click="setTheme('kids')" class="w-full px-3 py-2 hover:bg-gray-100 text-left flex items-center gap-2">
+                  <button @click="setTheme('kids')"
+                    class="w-full px-3 py-2 hover:bg-gray-100 text-left flex items-center gap-2">
                     <i class="fas fa-child"></i> Niños
                   </button>
-                  <button @click="setTheme('youth')" class="w-full px-3 py-2 hover:bg-gray-100 text-left flex items-center gap-2">
+                  <button @click="setTheme('youth')"
+                    class="w-full px-3 py-2 hover:bg-gray-100 text-left flex items-center gap-2">
                     <i class="fas fa-user"></i> Jóvenes
                   </button>
-                  <button @click="setTheme('adult')" class="w-full px-3 py-2 hover:bg-gray-100 text-left flex items-center gap-2">
+                  <button @click="setTheme('adult')"
+                    class="w-full px-3 py-2 hover:bg-gray-100 text-left flex items-center gap-2">
                     <i class="fas fa-user-tie"></i> Adultos
                   </button>
                 </div>
@@ -82,10 +85,12 @@
                   </svg>
                 </button>
                 <div v-show="menus.mode" class="absolute bg-white shadow rounded mt-1 w-36 z-20">
-                  <button @click="setMode('day')" class="w-full px-3 py-2 hover:bg-gray-100 text-left flex items-center gap-2">
+                  <button @click="setMode('day')"
+                    class="w-full px-3 py-2 hover:bg-gray-100 text-left flex items-center gap-2">
                     🌞 Día
                   </button>
-                  <button @click="setMode('night')" class="w-full px-3 py-2 hover:bg-gray-100 text-left flex items-center gap-2">
+                  <button @click="setMode('night')"
+                    class="w-full px-3 py-2 hover:bg-gray-100 text-left flex items-center gap-2">
                     🌙 Noche
                   </button>
                 </div>
@@ -102,9 +107,12 @@
                   </svg>
                 </button>
                 <div v-show="menus.font" class="absolute bg-white shadow rounded mt-1 w-36 z-20">
-                  <button @click="setFontSize('small')" class="w-full px-3 py-2 hover:bg-gray-100 text-left">Pequeño</button>
-                  <button @click="setFontSize('medium')" class="w-full px-3 py-2 hover:bg-gray-100 text-left">Medio</button>
-                  <button @click="setFontSize('large')" class="w-full px-3 py-2 hover:bg-gray-100 text-left">Grande</button>
+                  <button @click="setFontSize('small')"
+                    class="w-full px-3 py-2 hover:bg-gray-100 text-left">Pequeño</button>
+                  <button @click="setFontSize('medium')"
+                    class="w-full px-3 py-2 hover:bg-gray-100 text-left">Medio</button>
+                  <button @click="setFontSize('large')"
+                    class="w-full px-3 py-2 hover:bg-gray-100 text-left">Grande</button>
                 </div>
               </div>
 
@@ -119,8 +127,10 @@
                   </svg>
                 </button>
                 <div v-show="menus.contrast" class="absolute bg-white shadow rounded mt-1 w-36 z-20">
-                  <button @click="setContrast('normal')" class="w-full px-3 py-2 hover:bg-gray-100 text-left">Normal</button>
-                  <button @click="setContrast('high')" class="w-full px-3 py-2 hover:bg-gray-100 text-left">Alto</button>
+                  <button @click="setContrast('normal')"
+                    class="w-full px-3 py-2 hover:bg-gray-100 text-left">Normal</button>
+                  <button @click="setContrast('high')"
+                    class="w-full px-3 py-2 hover:bg-gray-100 text-left">Alto</button>
                 </div>
               </div>
             </div>
@@ -133,16 +143,16 @@
                     <span>{{ auth.user.name }}</span>
                     <span class="hidden md:inline">&nbsp;{{ auth.user.lastname }}</span>
                   </div>
-                  <icon class="w-5 h-5 fill-gray-700 group-hover:fill-indigo-600 focus:fill-indigo-600" name="cheveron-down" />
+                  <icon class="w-5 h-5 fill-gray-700 group-hover:fill-indigo-600 focus:fill-indigo-600"
+                    name="cheveron-down" />
                 </div>
               </template>
 
               <template #dropdown>
                 <div class="mt-2 py-2 text-sm bg-white rounded shadow-xl">
-                  <Link class="block px-6 py-2 w-full text-left hover:text-white hover:bg-indigo-500"
-                    href="/logout"
+                  <Link class="block px-6 py-2 w-full text-left hover:text-white hover:bg-indigo-500" :href="route('logout')"
                     method="delete" as="button">
-                    Logout
+                  Logout
                   </Link>
                 </div>
               </template>
@@ -191,7 +201,7 @@ export default {
 
     function search() {
       if (!searchQuery.value) return
-      router.get('/search', { q: searchQuery.value })
+      router.get(route('search'), { q: searchQuery.value })
     }
 
     const menus = ref({ theme: false, mode: false, font: false, contrast: false })
@@ -208,6 +218,11 @@ export default {
     document.addEventListener('click', handleClickOutside)
 
     return { themeState, setTheme, setMode, setFontSize, setContrast, searchQuery, search, menus, openMenu }
-  }
+  },
+  data() {
+    return {
+      route,
+    }
+  },
 }
 </script>

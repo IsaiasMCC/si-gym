@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pago;
 use App\Models\PlanPago;
 use App\Models\Reserva;
+use App\Models\Subscripcion;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -14,21 +16,15 @@ class DashboardController extends Controller
     public function index()
     {
         return Inertia::render('Dashboard/Index', [
-            // 'stats' => [
-            //     'users'   => User::count(),
-            //     'sales'   => PlanPago::sum('total') ?? 0,
-            //     'orders'  => Reserva::count(),
-            //     'pending' => Reserva::where('estado_reserva', 'PENDIENTE')->count(),
-            // ],
-            // 'reservas' => Reserva::latest()
-            //     ->take(10)
-            //     ->get([
-            //         'id',
-            //         'fecha',
-            //         'hora',
-            //         'total',
-            //         'estado_reserva',
-            //     ]),
+            'stats' => [
+                'users'   => User::count(),
+                'sales'   => PlanPago::sum('monto') ?? 0,
+                'subscripcions'  => Subscripcion::count(),
+                'pending' => Pago::where('estado', 'pendiente')->count(),
+            ],
+            'subscripcions' => Subscripcion::with('membresia')->latest()
+                ->take(10)
+                ->get(),
 
         ]);
     }
@@ -43,19 +39,19 @@ class DashboardController extends Controller
             ->orWhere('email', 'like', "%{$q}%")
             ->get();
 
-        // Buscar en reservas
-        // $reservas = Reserva::where('id', 'like', "%{$q}%")
-        //     ->orWhere('estado_reserva', 'like', "%{$q}%")
-        //     ->get();
+        // Buscar en subscripciones
+        $subscripciones = Subscripcion::where('id', 'like', "%{$q}%")->with('usuario', 'membresia')
+            ->orWhere('estado', 'like', "%{$q}%")
+            ->get();
 
-        // Buscar en ventas (planes de pago)
-        $ventas = PlanPago::where('total', 'like', "%{$q}%")->get();
+        // Buscar en planes de pago
+        $planes = PlanPago::where('estado', 'like', "%{$q}%")->with('subscripcion.membresia', 'subscripcion.usuario')->get();
 
         return Inertia::render('Search/Result', [
             'query' => $q,
             'users' => $users,
-            // 'reservas' => $reservas,
-            'ventas' => $ventas,
+            'subscripciones' => $subscripciones,
+            'planes' => $planes,
         ]);
     }
 }

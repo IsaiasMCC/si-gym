@@ -22,7 +22,7 @@ export default defineComponent({
   name: 'BarChart',
   components: { Bar },
   props: {
-    reservas: {
+    subscripcions: { // Cambiado de reservas
       type: Array,
       required: true
     }
@@ -37,37 +37,28 @@ export default defineComponent({
       responsive: true,
       maintainAspectRatio: true,
       plugins: {
-        legend: { 
-          display: false 
-        },
-        title: { 
-          display: false
-        }
+        legend: { display: false },
+        title: { display: false }
       },
       scales: {
         y: {
           beginAtZero: true,
-          ticks: {
-            stepSize: 1,
-            precision: 0
-          }
+          ticks: { stepSize: 1, precision: 0 }
         }
       }
     })
 
     const generateChartData = () => {
-      if (!props.reservas || props.reservas.length === 0) {
-        chartData.value = {
-          labels: [],
-          datasets: []
-        }
+      if (!props.subscripcions || props.subscripcions.length === 0) {
+        chartData.value = { labels: [], datasets: [] }
         return
       }
 
       const map = {}
-      props.reservas.forEach(r => {
-        if (r.fecha) {
-          map[r.fecha] = (map[r.fecha] || 0) + 1
+      props.subscripcions.forEach(s => {
+        const fecha = s.fecha_inicio
+        if (fecha) {
+          map[fecha] = (map[fecha] || 0) + 1
         }
       })
 
@@ -79,7 +70,7 @@ export default defineComponent({
         labels: Object.keys(sorted),
         datasets: [
           {
-            label: 'Reservas',
+            label: 'Subscripciones',
             data: Object.values(sorted),
             backgroundColor: '#4f46e5',
             borderColor: '#4338ca',
@@ -90,7 +81,7 @@ export default defineComponent({
       }
     }
 
-    watch(() => props.reservas, generateChartData, { immediate: true, deep: true })
+    watch(() => props.subscripcions, generateChartData, { immediate: true, deep: true })
 
     return { chartData, chartOptions }
   }

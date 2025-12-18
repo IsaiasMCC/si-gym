@@ -4,7 +4,7 @@
     <Head title="Asignar Rutina" />
 
     <h1 class="mb-8 text-3xl font-bold">
-      <Link class="text-indigo-400" href="/rutinas-usuarios">
+      <Link class="text-indigo-400" :href="route('rutinas-usuarios.index')">
       Rutinas
       </Link> / Asignar
     </h1>
@@ -60,11 +60,12 @@ export default {
         rutina_id: null,
         fecha_asignacion: '',
       }),
+      route,
     }
   },
   methods: {
     store() {
-      this.form.post('/rutinas-usuarios')
+      this.form.post(route('rutinas-usuarios.store'))
     },
   },
 }

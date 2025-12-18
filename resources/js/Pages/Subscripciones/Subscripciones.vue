@@ -38,8 +38,9 @@
                     </p>
 
                     <!-- Botón ver detalle -->
-                    <Link :href="`/mis-subscripciones/${s.id}`" class="w-full bg-indigo-500 py-2 px-3 rounded-xl font-semibold hover:bg-indigo-400 transition">
-                        Ver detalle
+                    <Link :href="route('subscripciones.show2', s.id)"
+                        class="w-full bg-indigo-500 py-2 px-3 rounded-xl font-semibold hover:bg-indigo-400 transition">
+                    Ver detalle
                     </Link>
                 </div>
             </div>
@@ -71,6 +72,11 @@ export default {
             return precioMembresia + totalPaquetes
         }
 
+    },
+    data() {
+        return {
+            route
+        }
     }
 }
 </script>

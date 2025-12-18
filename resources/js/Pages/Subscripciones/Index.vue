@@ -1,17 +1,14 @@
 <template>
   <GymLayout>
     <section id="planes" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div
-        v-for="m in membresias"
-        :key="m.id"
-        class="relative bg-gradient-to-br from-gray-800 to-gray-900
+      <div v-for="m in membresias" :key="m.id" class="relative bg-gradient-to-br from-gray-800 to-gray-900
                rounded-2xl shadow-lg p-6
                hover:scale-105 hover:shadow-indigo-500/30
-               transition transform"
-      >
+               transition transform">
         <!-- Icono -->
         <div class="w-12 h-12 rounded-full bg-indigo-500 flex items-center justify-center mb-4 shadow">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 12h16M6 10v4M18 10v4M9 9v6M15 9v6" />
           </svg>
         </div>
@@ -42,11 +39,9 @@
         </div>
 
         <!-- Botón funcional usando Link -->
-        <Link
-          :href="`/paquetes-adicional/${m.id}`"
-          class="w-full bg-indigo-500 py-2 rounded-xl font-semibold hover:bg-indigo-400 transition inline-block text-center"
-        >
-          Elegir membresía
+        <Link :href="route('subscripciones.paquetes_adicional', m.id)"
+          class="w-full bg-indigo-500 py-2 rounded-xl font-semibold hover:bg-indigo-400 transition inline-block text-center">
+        Elegir membresía
         </Link>
 
         <!-- Glow decorativo -->
@@ -64,6 +59,11 @@ export default {
   components: { GymLayout, Link },
   props: {
     membresias: Array
+  },
+  data() {
+    return {
+      route
+    }
   }
 }
 </script>

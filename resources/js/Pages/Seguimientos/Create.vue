@@ -4,7 +4,7 @@
     <Head title="Nuevo Seguimiento" />
 
     <h1 class="mb-8 text-3xl font-bold">
-      <Link class="text-indigo-400" href="/seguimientos">Seguimientos</Link> /
+      <Link class="text-indigo-400" :href="route('seguimientos.index', rutinaUsuario.id)">Seguimientos</Link> /
       Crear
     </h1>
     <div class="mb-6 p-6 max-w-3xl rounded-md shadow overflow-hidden"
@@ -37,7 +37,7 @@
         </div>
         <div class="flex justify-between px-8 py-4 border-t">
           <Link class="btn-indigo bg-red-500 me-2"
-            :href="`/seguimientos/${rutinaUsuario.id}`">
+            :href="route('seguimientos.index', rutinaUsuario.id)">
           volver </Link>
           <loading-button :loading="form.processing" class="btn-indigo">Guardar Seguimiento</loading-button>
         </div>
@@ -67,11 +67,12 @@ export default {
         observaciones: '',
         rutina_usuario_id: this.rutinaUsuario.id,
       }),
+      route,
     }
   },
   methods: {
     store() {
-      this.form.post('/seguimientos')
+      this.form.post(route('seguimientos.store'))
     },
   },
 }

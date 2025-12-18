@@ -1,5 +1,6 @@
 <template>
   <div class="min-h-screen p-6 bg-gray-50">
+
     <Head title="Nueva Suscripción" />
     <h1 class="text-3xl font-bold mb-6">Elegir Membresía</h1>
 
@@ -46,13 +47,14 @@ export default {
         membresia_id: '',
         paquete_id: '',
         fecha_inicio: ''
-      })
+      }),
+      route,
     }
   },
   methods: {
     store() {
       this.form.user_id = this.user.id
-      this.form.post('/subscripciones')
+      this.form.post(route('subscripciones.store'))
     }
   }
 }

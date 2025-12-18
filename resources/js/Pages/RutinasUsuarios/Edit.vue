@@ -4,7 +4,7 @@
         <Head title="Editar Rutina" />
 
         <h1 class="mb-8 text-3xl font-bold">
-            <Link class="text-indigo-400" href="/rutinas-usuarios">
+            <Link class="text-indigo-400" :href="route('rutinas-usuarios.index')">
             Rutinas
             </Link> / Editar
         </h1>
@@ -60,15 +60,16 @@ export default {
                 rutina_id: this.rutinaUsuario.rutina_id,
                 estado: this.rutinaUsuario.estado,
             }),
+            route,
         }
     },
     methods: {
         update() {
-            this.form.put(`/rutinas-usuarios/${this.rutinaUsuario.id}`)
+            this.form.put(`${route('rutinas-usuarios.update', this.rutinaUsuario.id)}`)
         },
         destroy() {
             if (confirm('¿Eliminar asignación?'))
-                this.$inertia.delete(`/rutinas-usuarios/${this.rutinaUsuario.id}`)
+                this.$inertia.delete(`${route('rutinas-usuarios.destroy', this.rutinaUsuario.id)}`)
         },
     },
     setup() {

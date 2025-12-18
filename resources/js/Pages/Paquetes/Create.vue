@@ -2,7 +2,7 @@
   <div class="min-h-screen p-6" :style="{ color: 'var(--color-text)', backgroundColor: 'var(--color-bg)' }">
     <Head title="Crear Paquete" />
     <h1 class="mb-8 text-3xl font-bold">
-      <Link class="text-indigo-400 hover:text-indigo-600" href="/paquetes">Paquetes</Link>
+      <Link class="text-indigo-400 hover:text-indigo-600" :href="route('paquetes.index')">Paquetes</Link>
       <span class="text-indigo-400 font-medium">/</span> Crear
     </h1>
 
@@ -51,8 +51,9 @@ export default {
         estado: 'activo',
         membresia_id: null
       }),
+      route,
     }
   },
-  methods: { store() { this.form.post('/paquetes') } },
+  methods: { store() { this.form.post(route('paquetes.store')) } },
 }
 </script>

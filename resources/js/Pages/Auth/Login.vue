@@ -18,7 +18,7 @@
           </label>
         </div>
         <div class="text-center mt-4">
-          <Link href="/register" class="text-sm text-indigo-600 hover:underline">
+          <Link :href="route('index_create')" class="text-sm text-indigo-600 hover:underline">
             ¿No tienes una cuenta? Regístrate aquí
           </Link>
         </div>
@@ -52,11 +52,12 @@ export default {
         password: 'secret',
         remember: false,
       }),
+      route: route,
     }
   },
   methods: {
     login() {
-      this.form.post('/login')
+      this.form.post(route('login.store'))
     },
   },
 }
